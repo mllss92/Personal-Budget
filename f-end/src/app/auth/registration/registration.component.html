@@ -1,1 +1,90 @@
-<p>registration works!</p>
+<div class="container">
+  <div class="register row slideDown">
+
+    <div class="col m2 l3"></div>
+
+    <div class="form-box col m8 s12 l6 grey lighten-3 z-depth-5">
+      <div class="titel teal darken-1 grey-text text-lighten-4">
+        <h4>Registration</h4>
+        <strong>Please enter the information to create an account</strong>
+      </div>
+
+      <form [formGroup]="regForm" (ngSubmit)="register()">
+        <div class="email">
+          <mat-form-field class="col s12">
+            <mat-label>E-mail address</mat-label>
+            <input class="browser-default" type="email" matInput formControlName="email">
+            <mat-error *ngIf="regForm.controls.email.touched && regForm.controls.email.hasError('required')">E-mail
+              address is required</mat-error>
+            <mat-error *ngIf="regForm.controls.email.hasError('email') && !regForm.controls.email.hasError('required')">
+              Please enter a valid email address. Example: <strong>user@example.com</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="password">
+          <mat-form-field class="col s12">
+            <mat-label>Password</mat-label>
+            <input class="browser-default" type="password" matInput formControlName="password">
+            <mat-error *ngIf="regForm.controls.password.touched && regForm.controls.password.hasError('required')">
+              Password is required</mat-error>
+            <mat-error
+              *ngIf="regForm.controls.password.hasError('passwordError') && !regForm.controls.password.hasError('required')">
+              The password should contain 6 to 30 symbols and include both upper and lower case letters in Latin and min
+              one number
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="confirmPassword">
+          <mat-form-field class="col s12">
+            <mat-label>Confirm password</mat-label>
+            <input class="browser-default" type="password" matInput formControlName="confirmPassword">
+            <mat-error
+              *ngIf="regForm.controls.confirmPassword.touched && regForm.controls.confirmPassword.hasError('required')">
+              Confirm password is required</mat-error>
+            <mat-error
+              *ngIf="regForm.controls.confirmPassword.hasError('passwordMatchError') && !regForm.controls.confirmPassword.hasError('required')">
+              Passwords need to match
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="firstName">
+          <mat-form-field class="col s12">
+            <mat-label>Name</mat-label>
+            <input class="browser-default" type="text" matInput formControlName="name">
+            <mat-error *ngIf="regForm.controls.name.touched && regForm.controls.name.hasError('required')">
+              Name is required</mat-error>
+            <mat-error
+              *ngIf="regForm.controls.name.hasError('nameError') && !regForm.controls.name.hasError('required')">
+              Please use only Latin letters. Min length is 2 characters. Numbers and following symbols can not be used:
+              !#:%,.()-_+^&*
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="lastName">
+          <mat-form-field class="col s12">
+            <mat-label>Last name</mat-label>
+            <input class="browser-default" type="text" matInput formControlName="lastName">
+            <mat-error *ngIf="regForm.controls.lastName.touched && regForm.controls.lastName.hasError('required')">
+              Last name is required</mat-error>
+            <mat-error
+              *ngIf="regForm.controls.lastName.hasError('lastNameError') && !regForm.controls.lastName.hasError('required')">
+              Please use only Latin letters. Min length is 2 characters. Numbers and following symbols can not be used:
+              !#:%,.()-_+^&*
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="buttons">
+          <button class="btn s12 col teal darken-1" type="submit">Register</button>
+          <button class="btn s12 col orange lighten-3" type="button" (click)="cancelRegistration()">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col m2 l3"></div>
+  </div>
+</div>

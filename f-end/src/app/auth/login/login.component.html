@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="container">
+  <div class="login row grey lighten-3 z-depth-5 slideDown">
+    <div class="login-icon col m5 s12">
+      <div class="icon-box z-depth-5 center">
+        <span class="material-icons">
+          account_circle
+        </span>
+      </div>
+    </div>
+
+    <div class="login-form col m7 s12">
+      <form [formGroup]="logForm" (ngSubmit)="login()">
+        <div class="login-field row">
+          <mat-form-field class="col s12">
+            <mat-label>E-mail address</mat-label>
+            <input class="browser-default" type="email" matInput formControlName="email">
+          </mat-form-field>
+        </div>
+
+        <div class="password-field row">
+          <mat-form-field class="col s12">
+            <mat-label>Password</mat-label>
+            <input class="browser-default" type="password" matInput formControlName="password">
+          </mat-form-field>
+        </div>
+
+        <div class="submit-field row">
+          <button class="col s12 btn" type="submit">Login</button>
+        </div>
+      </form>
+
+      <div class="alter center">
+        <div class="divider"></div>
+        <h6>or</h6>
+        <span>You can <a class="" (click)="navigateToRegister()">register here</a></span>
+      </div>
+    </div>
+  </div>
+
+</div>

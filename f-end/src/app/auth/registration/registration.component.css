@@ -1,0 +1,27 @@
+.container {
+  padding-top: 10%;
+}
+
+.register form {
+  padding: 1rem;
+}
+
+.form-box {
+  padding: 0;
+}
+
+.titel {
+  padding: 1rem;
+}
+
+.titel h4 {
+  margin-top: 0;
+}
+
+.buttons .btn {
+  margin-bottom: 1rem;
+}
+
+.form-box form div .col {
+  margin-bottom: 1rem;
+}

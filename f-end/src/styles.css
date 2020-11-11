@@ -1,4 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
+* {box-sizing: border-box;}
+html, body, .container { height: 100% !important; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error, .success {
+    color: #000;
+    background: #cfd8dc;
+}
+
+.error div, .success div {
+    font-size: 30px
+}
+
+.success div button span, .error div button span {
+    font-size: 1.3em
+}
+
+.success div {
+    color: #26a69a;
+}
+
+.error div {
+    color: #d84315;
+}
+
+.slideDown{
+  animation-name: slideDown;
+  -webkit-animation-name: slideDown;  
+
+  animation-duration: 1s; 
+  -webkit-animation-duration: 1s;
+
+  animation-timing-function: ease;    
+  -webkit-animation-timing-function: ease;    
+
+  visibility: visible !important;                     
+}
+
+@keyframes slideDown {
+  0% {
+      transform: translateY(-100%);
+  }
+  50%{
+      transform: translateY(8%);
+  }
+  65%{
+      transform: translateY(-4%);
+  }
+  80%{
+      transform: translateY(4%);
+  }
+  95%{
+      transform: translateY(-2%);
+  }           
+  100% {
+      transform: translateY(0%);
+  }       
+}
+
+@-webkit-keyframes slideDown {
+  0% {
+      -webkit-transform: translateY(-100%);
+  }
+  50%{
+      -webkit-transform: translateY(8%);
+  }
+  65%{
+      -webkit-transform: translateY(-4%);
+  }
+  80%{
+      -webkit-transform: translateY(4%);
+  }
+  95%{
+      -webkit-transform: translateY(-2%);
+  }           
+  100% {
+      -webkit-transform: translateY(0%);
+  }   
+}

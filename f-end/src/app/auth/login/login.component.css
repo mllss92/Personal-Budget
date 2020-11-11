@@ -1,0 +1,58 @@
+.container {
+  padding-top: 10%;
+}
+
+.login-icon, .login-form {
+  padding: 2em 2em 0 2em !important;
+}
+
+form {
+  margin-bottom: 2.5em;
+}
+
+.alter {
+  color: rgba(0,0,0,.54);
+}
+.alter h6 {
+  display: inline-block;
+  padding: .8em;
+  border-radius: 50%;
+  position: relative;
+  top: -2.1em;
+  background: #eee;
+  cursor: default;
+}
+.alter a {
+  cursor: pointer;
+}
+.alter span {
+  display: block;
+  position: relative;
+  top: -2.1em;
+  cursor: default;
+}
+
+.login-icon {
+  min-height: 10em;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+
+.icon-box {
+  border-radius: 50%;
+  background: radial-gradient( #00897b 50%, #ccc 50%);
+}
+
+.login-icon .material-icons {
+  font-size: 20vw;
+  color: rgb(170, 170, 170);
+}
+
+@media (min-width: 1080px) {
+  .login-icon .material-icons {
+    font-size: 17em;
+  }
+}
