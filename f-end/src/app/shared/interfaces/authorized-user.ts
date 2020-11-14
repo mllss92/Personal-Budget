@@ -3,4 +3,5 @@ export interface AuthorizedUser {
   _id: string;
   token: string;
   login: boolean;
+  balance: number;
 }

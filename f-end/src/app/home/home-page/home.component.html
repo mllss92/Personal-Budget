@@ -1,1 +1,119 @@
-<p>home works!</p>
+<app-nav></app-nav>
+
+<div class="container">
+  <div class="home z-depth-5">
+
+    <div class="income">
+      <div class="income-title">
+        <h6>INCOME</h6>
+        <div class="grey-text text-lighten-1">
+          <strong>In this month({{ dataService.month }}):</strong>
+          <span class="income-total">0,00 грн.</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="income-btns">
+        <button class="btn btn-small" (click)="incomeAdd()">add</button>
+        <button class="btn btn-small grey lighten-1" (click)="incomeDistributeActive()"
+          [ngClass]="{'card-active': popup.popupConfig.incomeDistribute.active}">distribute</button>
+        <button class="btn btn-small orange lighten-3" (click)="incomeEdit()">edit</button>
+      </div>
+    </div>
+
+    <div class="saving">
+      <div class="saving-title">
+        <h6>SAVINGS</h6>
+      </div>
+      <div class="divider"></div>
+      <div class="saving-cards">
+
+        <div class="card center" [ngClass]="{'card-select': popup.popupConfig.incomeDistribute.active}">
+          <div class="card-title">
+            <small>cash</small>
+          </div>
+          <div class="card-content">
+            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
+              [ngClass]="{'my-pulse': popup.popupConfig.incomeDistribute.active}" (click)="saving(cash)" #cash>
+              <span class="material-icons"> money </span>
+            </button>
+          </div>
+          <div class="card-action">
+            <span>500,00 грн</span>
+          </div>
+        </div>
+
+        <div class="card center" [ngClass]="{'card-select': popup.popupConfig.incomeDistribute.active}">
+          <div class="card-title">
+            <small>bank</small>
+          </div>
+          <div class="card-content">
+            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
+              [ngClass]="{'my-pulse': popup.popupConfig.incomeDistribute.active}" (click)="saving(bank)" #bank>
+              <span class="material-icons"> account_balance </span>
+            </button>
+          </div>
+          <div class="card-action">
+            <span>500,00 грн</span>
+          </div>
+        </div>
+
+        <div class="card center blue-grey lighten-4">
+          <div class="card-title">
+            <small>New</small>
+          </div>
+          <div class="card-content">
+            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1">
+              <span class="material-icons"> add </span>
+            </button>
+          </div>
+          <div class="card-action">
+            <span>SAVING</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="spends">
+      <div class="spends-title">
+        <h6>SPENDS</h6>
+      </div>
+      <div class="divider"></div>
+      <div class="saving-cards">
+
+        <div class="card center" [ngClass]="{'card-select': popup.popupConfig.saving.active}">
+          <div class="card-title">
+            <small>girlfriend</small>
+          </div>
+          <div class="card-content">
+            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
+              [ngClass]="{'my-pulse': popup.popupConfig.saving.active}" (click)="spend(girlfriend)" #girlfriend>
+              <span class="material-icons"> favorite_border </span>
+            </button>
+          </div>
+          <div class="card-action">
+            <span>500,00 грн</span>
+          </div>
+        </div>
+
+        <div class="card center blue-grey lighten-4">
+          <div class="card-title">
+            <small>New</small>
+          </div>
+          <div class="card-content">
+            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1">
+              <span class="material-icons"> add </span>
+            </button>
+          </div>
+          <div class="card-action">
+            <span>SPEND</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-pop-up></app-pop-up>

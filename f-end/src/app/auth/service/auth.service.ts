@@ -29,6 +29,7 @@ export class AuthService {
         localStorage.setItem('user_name', res.fullName);
         localStorage.setItem('_id', res._id);
         localStorage.setItem('login', res.login.toString());
+        localStorage.setItem('balance', res.balance.toString());
 
         this.toaster.success(`Welcome ${res.fullName}!`);
         this.router.navigate(['home']);

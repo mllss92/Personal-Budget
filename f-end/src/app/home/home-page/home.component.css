@@ -1,0 +1,95 @@
+.home {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.income-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.income-title div {
+  display: flex;
+  align-items: flex-end;
+}
+
+.income-total {
+  margin: 0 .5em;
+}
+
+.income-btns, .saving-cards {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.income-btns button {
+  width: 15%;
+  min-width: 100px;
+  margin: 0 1em;
+}
+
+.income, .saving, .spends {
+  margin-bottom: 2.5em;
+}
+
+.saving-cards {
+  justify-content: start;
+}
+
+.card {
+  padding: 0 .5em;
+  margin-right: .5em;
+}
+
+.card-title small {
+  text-transform: uppercase;
+}
+
+.card-content {
+  padding: .5em;
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.card-content .btn-floating {
+  width: 5em;
+  height: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #00bfa5;
+}
+
+.card-content span {
+  font-size: 3.6em;
+}
+
+.card-active {
+  box-shadow: 1px 1px 20px 1px #00e676;
+  z-index: 5;
+}
+
+.card-select {
+  z-index: 5;
+  box-shadow: 1px 1px 20px 1px #00e676;
+  margin-right: 1.2em;
+  transition: all .5s;
+}
+
+.card-select:hover {
+  transform: scale(1.1);
+  margin: 0 1.5em;
+}
+
+
+
+@media (max-width: 800px) {
+  .income-btns button {
+    margin-top: 1em;
+  }
+}

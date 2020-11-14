@@ -23,7 +23,8 @@ const login = async (req, res) => {
       fullName: `${user.name} ${user.lastName}`,
       _id: user._id,
       token: `Bearer ${token}`,
-      login: true
+      login: true,
+      balance: user.balance
     }
     return res.status(200).json(result)
   } catch (error) {
