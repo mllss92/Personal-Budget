@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { PopUpConfig } from './../../shared/interfaces/popup-config';
+import { PopUpConfig } from './../../../shared/interfaces/popup-config';
 
 @Injectable()
 export class PopupService {

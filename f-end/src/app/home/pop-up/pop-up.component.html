@@ -1,15 +1,16 @@
 <div class="content-wrapper" *ngIf="popup.popupConfig.popup">
   <div class="popup">
 
-    <div class="income-add card grey lighten-4 slideDown" *ngIf="popup.popupConfig.incomeAdd">
-      <span class="card-title">Title</span>
+    <div class="income-add slideDown" *ngIf="popup.popupConfig.incomeAdd">
+      <app-calculator (closeCalc)="incomeAdd()" (done)="incomeAddDone($event)"></app-calculator>
+      <!-- <span class="card-title">Title</span>
       <div class="card-content">
         <p>Coming soon...</p>
       </div>
       <div class="buttons card-action row">
         <button class="btn col s3" (click)="incomeAdd()">Ok</button>
         <button class="btn orange lighten-3  col s3 offset-s6" (click)="incomeAdd()">Cancel</button>
-      </div>
+      </div> -->
     </div>
 
     <div class="income-distribute card grey lighten-4 slideDown" *ngIf="popup.popupConfig.incomeDistribute.opened">
@@ -24,14 +25,14 @@
     </div>
 
     <div class="income-edit card grey lighten-4 slideDown" *ngIf="popup.popupConfig.incomeEdit">
-      <span class="card-title">Title</span>
+      <!-- <span class="card-title">Title</span>
       <div class="card-content">
         <p>Coming soon...</p>
       </div>
       <div class="buttons card-action row">
         <button class="btn col s3" (click)="incomeEdit()">Ok</button>
         <button class="btn orange lighten-3  col s3 offset-s6" (click)="incomeEdit()">Cancel</button>
-      </div>
+      </div> -->
     </div>
 
     <div class="saving-spend card grey lighten-4 slideDown" *ngIf="popup.popupConfig.saving.opened">

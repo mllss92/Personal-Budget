@@ -18,8 +18,7 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private router: Router,
     private myValidator: ValidatorsService,
-    private authService: AuthService,
-    private toaster: ToasterService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {

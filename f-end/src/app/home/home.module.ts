@@ -1,19 +1,33 @@
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PopupService } from './pop-up-service/popup.service';
+import { MatInputModule } from '@angular/material/input';
+
+import { IncomeHttpService } from './services/http-service/income-http.service';
+import { CalculatorService } from './calculator/calculator-service/calculator.service';
+import { PopupService } from './services/pop-up-service/popup.service';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home-page/home.component';
 import { SharedModuleModule } from './../shared/shared-module/shared-module.module';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 @NgModule({
-  declarations: [HomeComponent, PopUpComponent],
+  declarations: [HomeComponent, PopUpComponent, CalculatorComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SharedModuleModule
+    SharedModuleModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    HttpClientModule
   ],
-  providers: [PopupService]
+  providers: [
+    PopupService,
+    CalculatorService,
+    IncomeHttpService
+  ]
 })
 export class HomeModule { }

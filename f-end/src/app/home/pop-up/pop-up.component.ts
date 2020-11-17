@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PopupService } from '../pop-up-service/popup.service';
+import { PopupService } from './../services/pop-up-service/popup.service';
 
 @Component({
   selector: 'app-pop-up',
@@ -12,6 +12,7 @@ export class PopUpComponent implements OnInit {
   constructor(public popup: PopupService) { }
 
   ngOnInit(): void {
+
   }
 
   incomeAdd(): void {
@@ -34,4 +35,7 @@ export class PopUpComponent implements OnInit {
     this.popup.togglePopup();
   }
 
+  incomeAddDone(value: number): void {
+    console.log(value);
+  }
 }

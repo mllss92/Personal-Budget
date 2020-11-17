@@ -5,7 +5,13 @@ const UserSchema = mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   lastName: { type: String, required: true },
-  balance: { type: Number, default: 0 }
+  balance: { type: Number, default: 0 },
+  income: [
+    {
+      month: { type: String },
+      value: []
+    }
+  ]
 });
 
 const Users = mongoose.model('Users', UserSchema);

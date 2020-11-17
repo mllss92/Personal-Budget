@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ToasterService } from './../../shared/services/toaster.service';
-import { PopupService } from './../pop-up-service/popup.service';
+import { PopupService } from './../services/pop-up-service/popup.service';
 import { DataService } from '../../shared/services/data.service';
 
 @Component({
