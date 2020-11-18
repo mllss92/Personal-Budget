@@ -27,9 +27,18 @@
 }
 
 .income-btns button {
-  width: 15%;
+  width: 15vh;
   min-width: 100px;
   margin: 0 1em;
+}
+
+#distribute {
+  display: block;
+}
+
+.income-btns div label {
+  display: inline-block;
+  margin-top: 10px;
 }
 
 .income, .saving, .spends {
@@ -72,6 +81,11 @@
 .card-active {
   box-shadow: 1px 1px 20px 1px #00e676;
   z-index: 5;
+}
+
+.z-index {
+  z-index: 5;
+  color: #f4f4f4 !important;
 }
 
 .card-select {

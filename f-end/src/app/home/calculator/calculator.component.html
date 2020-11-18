@@ -8,6 +8,9 @@
       <mat-form-field class="col s12">
         <input class="browser-default calculator-display teal lighten-2 col s12" type="text" matInput
           (input)="calcBtnsOnly()" [formControl]="calcDisplay">
+        <span *ngIf="calcDisplay.hasError('incomeError')">
+          <small id="errorField">Number format is invalid. Please enter the correct number or recalculate!</small>
+        </span>
       </mat-form-field>
     </div>
     <div class="card-content">

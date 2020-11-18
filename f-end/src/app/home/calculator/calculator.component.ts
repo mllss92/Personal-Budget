@@ -52,7 +52,12 @@ export class CalculatorComponent implements OnInit {
   }
 
   onDone(): void {
-    this.done.emit(+this.calcDisplay.value);
+    const value = this.calcDisplay.value;
+    if (isNaN(value) || value === 0 || !value || value < 0) {
+      this.calcDisplay.setErrors({ incomeError: true });
+    } else {
+      this.done.emit(+this.calcDisplay.value);
+    }
   }
 
 

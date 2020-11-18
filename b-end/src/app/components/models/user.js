@@ -6,12 +6,15 @@ const UserSchema = mongoose.Schema({
   name: { type: String, required: true },
   lastName: { type: String, required: true },
   balance: { type: Number, default: 0 },
-  income: [
-    {
-      month: { type: String },
-      value: []
-    }
-  ]
+  income: {
+    avalibleToDistribute: { type: Number, default: 0 },
+    list: [
+      {
+        month: { type: String },
+        value: []
+      }
+    ]
+  }
 });
 
 const Users = mongoose.model('Users', UserSchema);

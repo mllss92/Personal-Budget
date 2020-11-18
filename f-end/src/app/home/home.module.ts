@@ -1,11 +1,10 @@
-import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatInputModule } from '@angular/material/input';
 
-import { IncomeHttpService } from './services/http-service/income-http.service';
+import { HomeHttpService } from './services/http-service/home-http.service';
 import { CalculatorService } from './calculator/calculator-service/calculator.service';
 import { PopupService } from './services/pop-up-service/popup.service';
 import { HomeRoutingModule } from './home-routing.module';
@@ -21,13 +20,12 @@ import { CalculatorComponent } from './calculator/calculator.component';
     HomeRoutingModule,
     SharedModuleModule,
     ReactiveFormsModule,
-    MatInputModule,
-    HttpClientModule
+    MatInputModule
   ],
   providers: [
     PopupService,
     CalculatorService,
-    IncomeHttpService
+    HomeHttpService
   ]
 })
 export class HomeModule { }

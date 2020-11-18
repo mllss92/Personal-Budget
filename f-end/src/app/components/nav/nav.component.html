@@ -13,7 +13,7 @@
       <div class="info-box">
         <span class="material-icons"> account_balance_wallet </span>
         <span class="data grey-text text-lighten-1">Balance:
-          {{ dataService.authorizedUser.balance.toLocaleString('ua-UA', { style: 'currency', currency: "UAH" }) }}</span>
+          {{ dataService.authorizedUser.balance | currency:'UAH ':'symbol':'1.1-1' }}</span>
       </div>
 
       <div class="info-box">
@@ -23,7 +23,7 @@
 
       <div class="info-box">
         <span class="material-icons"> access_time </span>
-        <span class="data grey-text text-lighten-1" id="time">Time: </span>
+        <span class="data grey-text text-lighten-1" id="time"></span>
       </div>
     </div>
 

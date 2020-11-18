@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HomeHttpService } from '../services/http-service/home-http.service';
 import { ToasterService } from './../../shared/services/toaster.service';
 import { PopupService } from './../services/pop-up-service/popup.service';
 import { DataService } from '../../shared/services/data.service';
@@ -14,10 +15,12 @@ export class HomeComponent implements OnInit {
   constructor(
     public dataService: DataService,
     public popup: PopupService,
-    private toastr: ToasterService
+    private toastr: ToasterService,
+    private http: HomeHttpService
   ) { }
 
   ngOnInit(): void {
+    this.http.getIncomesInfo();
   }
 
   incomeAdd(): void {

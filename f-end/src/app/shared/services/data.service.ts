@@ -17,6 +17,8 @@ export class DataService {
   };
 
   month = moment().format('MM.YYYY');
+  monthIncome: number;
+  avalibleToDistribute: number;
 
   constructor() { }
 }

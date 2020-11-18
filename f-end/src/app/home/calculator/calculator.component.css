@@ -48,4 +48,11 @@
   margin: 0;
 }
 
+#errorField {
+  /* position: absolute; */
+  /* display: block; */
+  /* bottom: -30px; */
+  color: #ff6e40;
+}
+
 

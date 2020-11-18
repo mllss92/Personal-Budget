@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HomeHttpService } from '../services/http-service/home-http.service';
 import { PopupService } from './../services/pop-up-service/popup.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { PopupService } from './../services/pop-up-service/popup.service';
 })
 export class PopUpComponent implements OnInit {
 
-  constructor(public popup: PopupService) { }
+  constructor(
+    public popup: PopupService,
+    private http: HomeHttpService
+  ) { }
 
   ngOnInit(): void {
 
@@ -36,6 +40,7 @@ export class PopUpComponent implements OnInit {
   }
 
   incomeAddDone(value: number): void {
-    console.log(value);
+    this.http.addIncome(value);
+    this.incomeAdd();
   }
 }

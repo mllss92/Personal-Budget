@@ -8,14 +8,23 @@
         <h6>INCOME</h6>
         <div class="grey-text text-lighten-1">
           <strong>This month({{ dataService.month }}):</strong>
-          <span class="income-total">0,00 грн.</span>
+          <span class="income-total">{{ dataService.monthIncome | currency:'UAH ':'symbol':'1.1-1'}}</span>
         </div>
       </div>
       <div class="divider"></div>
       <div class="income-btns">
         <button class="btn btn-small" (click)="incomeAdd()">add</button>
-        <button class="btn btn-small grey lighten-1" (click)="incomeDistributeActive()"
-          [ngClass]="{'card-active': popup.popupConfig.incomeDistribute.active}">distribute</button>
+        <div [ngClass]="{'z-index': popup.popupConfig.incomeDistribute.active}">
+          <button class="btn btn-small grey lighten-1" id="distribute"
+            [ngClass]="{'card-active': popup.popupConfig.incomeDistribute.active}"
+            (click)="incomeDistributeActive()">distribute</button>
+          <label for="distribute" [ngClass]="{'z-index': popup.popupConfig.incomeDistribute.active}">
+            Avalible to distribute:
+            <strong>
+              {{ dataService.avalibleToDistribute | currency:'UAH ':'symbol':'1.1-1' }}
+            </strong>
+          </label>
+        </div>
         <button class="btn btn-small orange lighten-3" (click)="incomeEdit()">edit</button>
       </div>
     </div>
