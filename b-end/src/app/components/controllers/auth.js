@@ -25,9 +25,12 @@ const login = async (req, res) => {
       fullName: `${user.name} ${user.lastName}`,
       _id: user._id,
       token: `Bearer ${token}`,
-      login: true,
       balance: user.balance,
-      savings: user.savings
+      monthIncome: monthIncome,
+      avalibleToDistribute: user.income.avalibleToDistribute,
+      savings: user.savings,
+      spends: user.spends,
+      login: true
     }
     return res.status(200).json(result)
   } catch (error) {
@@ -41,7 +44,7 @@ const getMonthIncome = async (user, reqMonth) => {
   if (!month) {
     user.income.list.push({ month: reqMonth, value: [0] });
     await user.save();
-    return user.income.list.value;
+    return [0]
   }
   return month.value;
 }

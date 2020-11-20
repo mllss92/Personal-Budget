@@ -9,18 +9,18 @@ import { AuthorizedUser } from 'src/app/shared/interfaces/authorized-user';
 export class DataService {
 
   authorizedUser: AuthorizedUser = {
-    fullName: localStorage.getItem('user_name') || '',
-    _id: localStorage.getItem('_id') || '',
-    token: localStorage.getItem('token') || '',
-    login: localStorage.getItem('login') === 'true' || false,
-    balance: +localStorage.getItem('balance') || 0,
-    savings: JSON.parse(localStorage.getItem('savings')) || []
+    fullName: JSON.parse(localStorage.getItem('fullName')) || '',
+    _id: JSON.parse(localStorage.getItem('_id')) || '',
+    token: JSON.parse(localStorage.getItem('token')) || '',
+    balance: JSON.parse(localStorage.getItem('balance')) || 0,
+    monthIncome: JSON.parse(localStorage.getItem('monthIncome')) || [],
+    avalibleToDistribute: JSON.parse(localStorage.getItem('avalibleToDistribute')) || 0,
+    savings: JSON.parse(localStorage.getItem('savings')) || [],
+    spends: JSON.parse(localStorage.getItem('spends')) || [],
+    login: JSON.parse(localStorage.getItem('login')) || false
   };
 
   month = moment().format('MM.YYYY');
-
-  monthIncome: number;
-  avalibleToDistribute: number;
 
   savingCardId: string;
 

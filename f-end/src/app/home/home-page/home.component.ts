@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.getIncomesInfo();
   }
 
   saving(name: string): void {
@@ -39,7 +38,7 @@ export class HomeComponent implements OnInit {
     this.popup.savingActiveToggle();
   }
 
-  spend(): void {
+  onSpend(): void {
     if (this.popup.popupConfig.saving.active) {
       this.openSpendPopup();
     } else {

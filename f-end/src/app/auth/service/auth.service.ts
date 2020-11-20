@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LocalStorageService } from './../../shared/helpers/local-storage.service';
 import { DataService } from '../../shared/services/data.service';
 import { ErrorHandlerService } from './../../shared/helpers/error-handler.service';
 import { ToasterService } from './../../shared/services/toaster.service';
@@ -17,7 +18,8 @@ export class AuthService {
     private toaster: ToasterService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private localStorageService: LocalStorageService
   ) { }
 
   login(data: LoginData): void {
@@ -28,19 +30,10 @@ export class AuthService {
     };
     this.http.post('http://localhost:3000/api/auth/login', reqValue).subscribe(
       (res: AuthorizedUser) => {
-        console.log(res);
+        this.localStorageService.updateUserInfo(res);
 
-        // this.dataService.authorizedUser = res;
-
-        // localStorage.setItem('token', res.token);
-        // localStorage.setItem('user_name', res.fullName);
-        // localStorage.setItem('_id', res._id);
-        // localStorage.setItem('login', res.login.toString());
-        // localStorage.setItem('balance', res.balance.toString());
-        // localStorage.setItem('savings', JSON.stringify(res.savings));
-
-        // this.toaster.success(`Welcome ${res.fullName}!`);
-        // this.router.navigate(['home']);
+        this.toaster.success(`Welcome ${res.fullName}!`);
+        this.router.navigate(['home']);
       },
       err => {
         this.errorHandler.error(err);

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { NewCategory } from './../../shared/interfaces/new-category';
+import { Category } from './../../shared/interfaces/category';
 import { DataService } from './../../shared/services/data.service';
 import { CalculatorComponent } from './../calculator/calculator.component';
 import { HomeHttpService } from '../services/http-service/home-http.service';
@@ -32,7 +32,7 @@ export class PopUpComponent implements OnInit {
   }
 
   distributeDone(value: number): void {
-    if (value > this.dataService.avalibleToDistribute) {
+    if (value > this.dataService.authorizedUser.avalibleToDistribute) {
       this.calcComponent.distributeError();
     } else {
       this.http.distributeIncome(value);
@@ -40,11 +40,13 @@ export class PopUpComponent implements OnInit {
     }
   }
 
-  createNewSpend(value: NewCategory): void {
+  createNewSpend(value: Category): void {
     this.http.createNewSpend(value);
+    this.popup.spendCreateToogle();
   }
 
-  createNewSaving(value: NewCategory): void {
+  createNewSaving(value: Category): void {
     this.http.createNewSaving(value);
+    this.popup.savingCreateToogle();
   }
 }

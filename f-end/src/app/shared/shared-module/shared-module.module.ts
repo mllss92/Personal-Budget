@@ -4,17 +4,20 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { NavComponent } from './../../components/nav/nav.component';
+import { ArrToNumberPipe } from './pipes/arr-to-number.pipe';
 
 @NgModule({
   declarations: [
-    NavComponent
+    NavComponent,
+    ArrToNumberPipe
   ],
   imports: [
     CommonModule,
     MatSidenavModule
   ],
   exports: [
-    NavComponent
+    NavComponent,
+    ArrToNumberPipe
   ]
 })
 export class SharedModuleModule { }

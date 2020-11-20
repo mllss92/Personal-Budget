@@ -8,7 +8,8 @@
         <h6>INCOME</h6>
         <div class="grey-text text-lighten-1">
           <strong>This month({{ dataService.month }}):</strong>
-          <span class="income-total">{{ dataService.monthIncome | currency:'UAH ':'symbol':'1.1-1'}}</span>
+          <span
+            class="income-total">{{ dataService.authorizedUser.monthIncome | arrToNumber | currency:'UAH ':'symbol':'1.1-1'}}</span>
         </div>
       </div>
       <div class="divider"></div>
@@ -22,7 +23,7 @@
           <label for="distribute" [ngClass]="{'z-index': popup.popupConfig.incomeDistribute.active}">
             Available to distribute:
             <strong>
-              {{ dataService.avalibleToDistribute | currency:'UAH ':'symbol':'1.1-1' }}
+              {{ dataService.authorizedUser.avalibleToDistribute | currency:'UAH ':'symbol':'1.1-1' }}
             </strong>
           </label>
         </div>
@@ -80,18 +81,19 @@
       <div class="divider"></div>
       <div class="saving-cards">
 
-        <div class="card center" [ngClass]="{'card-select': popup.popupConfig.saving.active}">
+        <div class="card center" [ngClass]="{'card-select': popup.popupConfig.saving.active}"
+          *ngFor="let spend of dataService.authorizedUser.spends">
           <div class="card-title">
-            <small>girlfriend</small>
+            <small>{{ spend.name }}</small>
           </div>
           <div class="card-content">
             <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
-              [ngClass]="{'my-pulse': popup.popupConfig.saving.active}" (click)="spend()">
-              <span class="material-icons"> favorite_border </span>
+              [ngClass]="{'my-pulse': popup.popupConfig.saving.active}" (click)="onSpend()">
+              <span class="material-icons"> {{ spend.image }} </span>
             </button>
           </div>
           <div class="card-action">
-            <span>500,00 грн</span>
+            <span>{{ spend.value | currency:'UAH ':'symbol':'1.1-1'  }}</span>
           </div>
         </div>
 

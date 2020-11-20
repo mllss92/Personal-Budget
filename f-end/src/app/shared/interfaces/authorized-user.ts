@@ -1,10 +1,13 @@
-import { Savings } from './savings';
+import { Category } from './category';
 
 export interface AuthorizedUser {
   fullName: string;
   _id: string;
   token: string;
-  login: boolean;
   balance: number;
-  savings: Savings[];
+  monthIncome: number[];
+  avalibleToDistribute: number;
+  savings: Category[];
+  spends: Category[];
+  login: boolean;
 }
