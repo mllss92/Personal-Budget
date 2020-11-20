@@ -1,0 +1,47 @@
+<div class="spend-create card">
+  <div class="card-title close">
+    <button class="btn btn-floating orange lighten-3" (click)="close()"><span class="material-icons"> close
+      </span></button>
+  </div>
+  <div class="card-title center-align">
+    <span>{{ title }}</span>
+    <div class="divider"></div>
+  </div>
+
+  <div class="card-content">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="name row">
+        <mat-form-field class="col s12">
+          <mat-label>Category name:</mat-label>
+          <input class="browser-default" type="text" matInput formControlName="name">
+          <mat-hint align='end'>{{ createForm.value.name.length }}/10</mat-hint>
+          <mat-error *ngIf="createForm.controls.name.getError('required')">Category name is required!</mat-error>
+          <mat-error
+            *ngIf="!createForm.controls.name.getError('required') && createForm.controls.name.getError('maxlength')">
+            Maximum length for category name is 10 symbols!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="image row">
+        <mat-form-field class="col s12">
+          <mat-label>Select category image</mat-label>
+          <mat-select formControlName="image">
+            <mat-option *ngFor="let image of images" [value]="image">
+              <div class="valign-wrapper">
+                <span class="material-icons test"> {{ image }} </span>
+              </div>
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="createForm.controls.image.getError('required')">Category image is required!</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="card-action">
+        <div class="submit row">
+          <button class="btn col s12" type="submit">Create</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

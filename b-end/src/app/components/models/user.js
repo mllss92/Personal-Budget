@@ -14,6 +14,37 @@ const UserSchema = mongoose.Schema({
         value: []
       }
     ]
+  },
+  savings: [{
+    name: { type: String, required: true },
+    image: { type: String, required: true },
+    value: { type: Number, default: 0 }
+  }],
+  spends: [{
+    name: { type: String, required: true },
+    image: { type: String, required: true },
+    value: { type: Number, default: 0 }
+  }]
+});
+
+UserSchema.pre("save", function (next) {
+  if (this.savings.length === 0) {
+    const cash = {
+      name: 'cash',
+      image: 'money',
+      value: 0
+    };
+    const bank = {
+      name: 'bank',
+      image: 'account_balance',
+      value: 0
+    }
+
+    this.savings.push(cash, bank);
+
+    next();
+  } else {
+    next();
   }
 });
 

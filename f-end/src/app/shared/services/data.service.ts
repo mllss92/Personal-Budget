@@ -13,12 +13,16 @@ export class DataService {
     _id: localStorage.getItem('_id') || '',
     token: localStorage.getItem('token') || '',
     login: localStorage.getItem('login') === 'true' || false,
-    balance: +localStorage.getItem('balance') || 0
+    balance: +localStorage.getItem('balance') || 0,
+    savings: JSON.parse(localStorage.getItem('savings')) || []
   };
 
   month = moment().format('MM.YYYY');
+
   monthIncome: number;
   avalibleToDistribute: number;
+
+  savingCardId: string;
 
   constructor() { }
 }

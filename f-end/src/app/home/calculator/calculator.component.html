@@ -8,8 +8,12 @@
       <mat-form-field class="col s12">
         <input class="browser-default calculator-display teal lighten-2 col s12" type="text" matInput
           (input)="calcBtnsOnly()" [formControl]="calcDisplay">
-        <span *ngIf="calcDisplay.hasError('incomeError')">
-          <small id="errorField">Number format is invalid. Please enter the correct number or recalculate!</small>
+        <span *ngIf="calcDisplay.hasError('valueError')">
+          <small class="errorField">Number format is invalid. Please enter the correct number or recalculate!</small>
+        </span>
+        <span *ngIf="calcDisplay.hasError('distributeError')">
+          <small class="errorField">Entered number exceeds amount available to distribute:
+            <strong>{{ dataService.avalibleToDistribute | currency:'UAH ':'symbol':'1.1-1' }}</strong></small>
         </span>
       </mat-form-field>
     </div>

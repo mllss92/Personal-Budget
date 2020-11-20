@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { HomeHttpService } from '../services/http-service/home-http.service';
 import { ToasterService } from './../../shared/services/toaster.service';
-import { PopupService } from './../services/pop-up-service/popup.service';
+import { PopupService } from './../pop-up/pop-up-service/popup.service';
 import { DataService } from '../../shared/services/data.service';
 
 @Component({
@@ -23,42 +23,23 @@ export class HomeComponent implements OnInit {
     this.http.getIncomesInfo();
   }
 
-  incomeAdd(): void {
-    this.popup.togglePopup();
-    this.popup.toggleIncomeAdd();
-  }
-
-  incomeEdit(): void {
-    this.popup.togglePopup();
-    this.popup.toggleIncomeEdit();
-  }
-
-  incomeDistributeActive(): void {
-    this.popup.togglePopup();
-    this.popup.toggleIncomeDistributeActive();
-  }
-
-  saving(target: HTMLButtonElement): void {
+  saving(name: string): void {
+    const target = document.getElementById(name);
+    this.dataService.savingCardId = target.dataset.id;
     if (this.popup.popupConfig.incomeDistribute.active) {
-      this.openSavingPopup();
+      this.popup.openSavingPopup();
     } else {
-      this.savingActive(target);
+      this.savingActive(target as HTMLButtonElement);
     }
-  }
-
-  openSavingPopup(): void {
-    this.popup.toggleIncomeDistributeActive();
-    this.popup.toggleIncomeDistributeOpened();
   }
 
   savingActive(target: HTMLButtonElement): void {
     const card = target.offsetParent;
     card.classList.toggle('card-active');
-    this.popup.togglePopup();
-    this.popup.toggleSavingActive();
+    this.popup.savingActiveToggle();
   }
 
-  spend(target: HTMLButtonElement): void {
+  spend(): void {
     if (this.popup.popupConfig.saving.active) {
       this.openSpendPopup();
     } else {
@@ -68,8 +49,8 @@ export class HomeComponent implements OnInit {
 
   openSpendPopup(): void {
     document.querySelector('.card-active').classList.toggle('card-active');
-    this.popup.toggleSavingActive();
-    this.popup.toggleSavingOpened();
+    this.popup.openSpendPopup();
   }
+
 
 }

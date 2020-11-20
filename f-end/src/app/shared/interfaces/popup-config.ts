@@ -10,4 +10,6 @@ export interface PopUpConfig {
     active: boolean;
     opened: boolean;
   };
+  createSavingCard: boolean;
+  createSpendCard: boolean;
 }

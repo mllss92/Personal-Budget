@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const jwtConfig = require('./../../../configs/jwt');
 
+
 const login = async (req, res) => {
   try {
     const data = req.body;
@@ -19,17 +20,30 @@ const login = async (req, res) => {
       jwtConfig.key,
       jwtConfig.config
     );
+    const monthIncome = await getMonthIncome(user, data.month);
     const result = {
       fullName: `${user.name} ${user.lastName}`,
       _id: user._id,
       token: `Bearer ${token}`,
       login: true,
-      balance: user.balance
+      balance: user.balance,
+      savings: user.savings
     }
     return res.status(200).json(result)
   } catch (error) {
     res.status(500).json({ message: 'Server error. Please try again later.' })
   }
+}
+
+const getMonthIncome = async (user, reqMonth) => {
+  const incomeList = user.income.list;
+  const month = incomeList.find(el => el.month === reqMonth);
+  if (!month) {
+    user.income.list.push({ month: reqMonth, value: [0] });
+    await user.save();
+    return user.income.list.value;
+  }
+  return month.value;
 }
 
 const register = async (req, res) => {

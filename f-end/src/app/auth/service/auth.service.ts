@@ -21,18 +21,26 @@ export class AuthService {
   ) { }
 
   login(data: LoginData): void {
-    this.http.post('http://localhost:3000/api/auth/login', data).subscribe(
+    const reqValue = {
+      email: data.email,
+      password: data.password,
+      month: this.dataService.month
+    };
+    this.http.post('http://localhost:3000/api/auth/login', reqValue).subscribe(
       (res: AuthorizedUser) => {
-        this.dataService.authorizedUser = res;
+        console.log(res);
 
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('user_name', res.fullName);
-        localStorage.setItem('_id', res._id);
-        localStorage.setItem('login', res.login.toString());
-        localStorage.setItem('balance', res.balance.toString());
+        // this.dataService.authorizedUser = res;
 
-        this.toaster.success(`Welcome ${res.fullName}!`);
-        this.router.navigate(['home']);
+        // localStorage.setItem('token', res.token);
+        // localStorage.setItem('user_name', res.fullName);
+        // localStorage.setItem('_id', res._id);
+        // localStorage.setItem('login', res.login.toString());
+        // localStorage.setItem('balance', res.balance.toString());
+        // localStorage.setItem('savings', JSON.stringify(res.savings));
+
+        // this.toaster.success(`Welcome ${res.fullName}!`);
+        // this.router.navigate(['home']);
       },
       err => {
         this.errorHandler.error(err);

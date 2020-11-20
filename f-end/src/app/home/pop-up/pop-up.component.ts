@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
+import { NewCategory } from './../../shared/interfaces/new-category';
+import { DataService } from './../../shared/services/data.service';
+import { CalculatorComponent } from './../calculator/calculator.component';
 import { HomeHttpService } from '../services/http-service/home-http.service';
-import { PopupService } from './../services/pop-up-service/popup.service';
+import { PopupService } from './pop-up-service/popup.service';
 
 @Component({
   selector: 'app-pop-up',
@@ -10,37 +13,38 @@ import { PopupService } from './../services/pop-up-service/popup.service';
 })
 export class PopUpComponent implements OnInit {
 
+  @ViewChild(CalculatorComponent)
+  private calcComponent: CalculatorComponent;
+
   constructor(
     public popup: PopupService,
-    private http: HomeHttpService
+    private http: HomeHttpService,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
 
   }
 
-  incomeAdd(): void {
-    this.popup.toggleIncomeAdd();
-    this.popup.togglePopup();
-  }
-
-  incomeEdit(): void {
-    this.popup.toggleIncomeEdit();
-    this.popup.togglePopup();
-  }
-
-  incomeSaving(): void {
-    this.popup.toggleIncomeDistributeOpened();
-    this.popup.togglePopup();
-  }
-
-  spendSaving(): void {
-    this.popup.toggleSavingOpened();
-    this.popup.togglePopup();
-  }
-
   incomeAddDone(value: number): void {
     this.http.addIncome(value);
-    this.incomeAdd();
+    this.popup.incomeAddToggle();
+  }
+
+  distributeDone(value: number): void {
+    if (value > this.dataService.avalibleToDistribute) {
+      this.calcComponent.distributeError();
+    } else {
+      this.http.distributeIncome(value);
+      this.popup.closeSavingPopup();
+    }
+  }
+
+  createNewSpend(value: NewCategory): void {
+    this.http.createNewSpend(value);
+  }
+
+  createNewSaving(value: NewCategory): void {
+    this.http.createNewSaving(value);
   }
 }

@@ -13,19 +13,21 @@
       </div>
       <div class="divider"></div>
       <div class="income-btns">
-        <button class="btn btn-small" (click)="incomeAdd()">add</button>
+        <button class="btn btn-small" (click)="popup.incomeAddToggle()">add</button>
+
         <div [ngClass]="{'z-index': popup.popupConfig.incomeDistribute.active}">
           <button class="btn btn-small grey lighten-1" id="distribute"
             [ngClass]="{'card-active': popup.popupConfig.incomeDistribute.active}"
-            (click)="incomeDistributeActive()">distribute</button>
+            (click)="popup.incomeDistributeActive()">distribute</button>
           <label for="distribute" [ngClass]="{'z-index': popup.popupConfig.incomeDistribute.active}">
-            Avalible to distribute:
+            Available to distribute:
             <strong>
               {{ dataService.avalibleToDistribute | currency:'UAH ':'symbol':'1.1-1' }}
             </strong>
           </label>
         </div>
-        <button class="btn btn-small orange lighten-3" (click)="incomeEdit()">edit</button>
+
+        <button class="btn btn-small orange lighten-3" (click)="popup.incomeEditToggle()">edit</button>
       </div>
     </div>
 
@@ -36,33 +38,20 @@
       <div class="divider"></div>
       <div class="saving-cards">
 
-        <div class="card center" [ngClass]="{'card-select': popup.popupConfig.incomeDistribute.active}">
+        <div class="card center" [ngClass]="{'card-select': popup.popupConfig.incomeDistribute.active}"
+          *ngFor="let save of dataService.authorizedUser.savings">
           <div class="card-title">
-            <small>cash</small>
+            <small>{{ save.name }}</small>
           </div>
           <div class="card-content">
             <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
-              [ngClass]="{'my-pulse': popup.popupConfig.incomeDistribute.active}" (click)="saving(cash)" #cash>
-              <span class="material-icons"> money </span>
+              [ngClass]="{'my-pulse': popup.popupConfig.incomeDistribute.active}" (click)="saving(save.name)"
+              [id]="save.name" [attr.data-id]="save._id">
+              <span class="material-icons"> {{ save.image }} </span>
             </button>
           </div>
           <div class="card-action">
-            <span>500,00 грн</span>
-          </div>
-        </div>
-
-        <div class="card center" [ngClass]="{'card-select': popup.popupConfig.incomeDistribute.active}">
-          <div class="card-title">
-            <small>bank</small>
-          </div>
-          <div class="card-content">
-            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
-              [ngClass]="{'my-pulse': popup.popupConfig.incomeDistribute.active}" (click)="saving(bank)" #bank>
-              <span class="material-icons"> account_balance </span>
-            </button>
-          </div>
-          <div class="card-action">
-            <span>500,00 грн</span>
+            <span>{{ save.value | currency:'UAH ':'symbol':'1.1-1' }}</span>
           </div>
         </div>
 
@@ -71,7 +60,8 @@
             <small>New</small>
           </div>
           <div class="card-content">
-            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1">
+            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
+              (click)="popup.savingCreateToogle()">
               <span class="material-icons"> add </span>
             </button>
           </div>
@@ -96,7 +86,7 @@
           </div>
           <div class="card-content">
             <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
-              [ngClass]="{'my-pulse': popup.popupConfig.saving.active}" (click)="spend(girlfriend)" #girlfriend>
+              [ngClass]="{'my-pulse': popup.popupConfig.saving.active}" (click)="spend()">
               <span class="material-icons"> favorite_border </span>
             </button>
           </div>
@@ -110,7 +100,8 @@
             <small>New</small>
           </div>
           <div class="card-content">
-            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1">
+            <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
+              (click)="popup.spendCreateToogle()">
               <span class="material-icons"> add </span>
             </button>
           </div>

@@ -1,15 +1,3 @@
-.close {
-  padding: .5em;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.close button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .calculator-display::-webkit-outer-spin-button,
 .calculator-display::-webkit-inner-spin-button {
   appearance: none;
@@ -48,10 +36,7 @@
   margin: 0;
 }
 
-#errorField {
-  /* position: absolute; */
-  /* display: block; */
-  /* bottom: -30px; */
+.errorField {
   color: #ff6e40;
 }
 
