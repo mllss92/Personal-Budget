@@ -1,0 +1,25 @@
+<div class="edit card">
+  <div class="card-title close">
+    <button class="btn btn-floating orange lighten-3" (click)="close()"><span class="material-icons"> close
+      </span></button>
+  </div>
+
+  <div class="card-title">
+    <span class="center-align">Edit</span>
+    <div class="divider"></div>
+    <small class="grey-text">Only amount available to distribute can be changed*</small>
+  </div>
+
+  <div class="card-content row">
+    <mat-form-field class="col s12">
+      <mat-label>Enter new amount</mat-label>
+      <input class="browser-default " type="number" matInput [formControl]="editInput">
+      <mat-hint>Not distributed: <strong>{{ dataservice.authorizedUser.avalibleToDistribute }}</strong></mat-hint>
+      <mat-error *ngIf="editInput.hasError('required')">Field is required and should contain numbers only!</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="card-action row">
+    <button class="btn col s12" (click)="onSave()" [disabled]="editInput.invalid">Save</button>
+  </div>
+</div>

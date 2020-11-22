@@ -46,8 +46,8 @@
           </div>
           <div class="card-content">
             <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
-              [ngClass]="{'my-pulse': popup.popupConfig.incomeDistribute.active}" (click)="saving(save.name)"
-              [id]="save.name" [attr.data-id]="save._id">
+              [ngClass]="{'my-pulse': popup.popupConfig.incomeDistribute.active}"
+              (click)="saving(save.name, save.value, save._id)" [id]="save.name">
               <span class="material-icons"> {{ save.image }} </span>
             </button>
           </div>
@@ -88,7 +88,7 @@
           </div>
           <div class="card-content">
             <button class="btn btn-floating grey lighten-4 grey-text text-lighten-1"
-              [ngClass]="{'my-pulse': popup.popupConfig.saving.active}" (click)="onSpend()">
+              [ngClass]="{'my-pulse': popup.popupConfig.saving.active}" (click)="onSpend(spend._id, spend.value)">
               <span class="material-icons"> {{ spend.image }} </span>
             </button>
           </div>

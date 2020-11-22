@@ -34,7 +34,20 @@ const distributeIncome = async (req, res) => {
   }
 }
 
+const editIncome = async (req, res) => {
+  try {
+    const user = await users.findByIdAndUpdate({ _id: req.user._id }, { 'income.avalibleToDistribute': req.body.value }, { new: true });
+    const result = {
+      avalibleToDistribute: user.income.avalibleToDistribute
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: 'Some server error. Try again later' })
+  }
+}
+
 module.exports = {
   addIncome,
-  distributeIncome
+  distributeIncome,
+  editIncome
 }

@@ -9,26 +9,12 @@
       <app-calculator (closeCalc)="popup.closeSavingPopup()" (done)="distributeDone($event)"></app-calculator>
     </div>
 
-    <div class="income-edit card grey lighten-4 slideDown" *ngIf="popup.popupConfig.incomeEdit">
-      <span class="card-title">Title</span>
-      <div class="card-content">
-        <p>Coming soon...</p>
-      </div>
-      <div class="buttons card-action row">
-        <button class="btn col s3" (click)="popup.incomeEditToggle()">Ok</button>
-        <button class="btn orange lighten-3  col s3 offset-s6" (click)="popup.incomeEditToggle()">Cancel</button>
-      </div>
+    <div class="income-edit slideDown" *ngIf="popup.popupConfig.incomeEdit">
+      <app-edit (cancel)="popup.incomeEditToggle()" (save)="incomeEdit($event)"></app-edit>
     </div>
 
     <div class="saving-spend card grey lighten-4 slideDown" *ngIf="popup.popupConfig.saving.opened">
-      <span class="card-title">Title</span>
-      <div class="card-content">
-        <p>Coming soon...</p>
-      </div>
-      <div class="buttons card-action row">
-        <button class="btn col s3" (click)="popup.closeSpendPopup()">Ok</button>
-        <button class="btn orange lighten-3  col s3 offset-s6" (click)="popup.closeSpendPopup()">Cancel</button>
-      </div>
+      <app-calculator (closeCalc)="popup.closeSpendPopup()" (done)="addSpend($event)"></app-calculator>
     </div>
 
     <div class="create-saving slideDown" *ngIf="popup.popupConfig.createSavingCard">

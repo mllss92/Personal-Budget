@@ -14,9 +14,10 @@ import { SharedModuleModule } from './../shared/shared-module/shared-module.modu
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { CreateCardComponent } from './create-card/create-card.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
-  declarations: [HomeComponent, PopUpComponent, CalculatorComponent, CreateCardComponent],
+  declarations: [HomeComponent, PopUpComponent, CalculatorComponent, CreateCardComponent, EditComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

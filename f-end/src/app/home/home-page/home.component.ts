@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HomeHttpService } from '../services/http-service/home-http.service';
 import { ToasterService } from './../../shared/services/toaster.service';
 import { PopupService } from './../pop-up/pop-up-service/popup.service';
 import { DataService } from '../../shared/services/data.service';
@@ -15,16 +14,16 @@ export class HomeComponent implements OnInit {
   constructor(
     public dataService: DataService,
     public popup: PopupService,
-    private toastr: ToasterService,
-    private http: HomeHttpService
+    private toastr: ToasterService
   ) { }
 
   ngOnInit(): void {
   }
 
-  saving(name: string): void {
+  saving(name: string, value: number, id: string): void {
     const target = document.getElementById(name);
-    this.dataService.savingCardId = target.dataset.id;
+    this.dataService.savingCardId = id;
+    this.dataService.savingCardValue = value;
     if (this.popup.popupConfig.incomeDistribute.active) {
       this.popup.openSavingPopup();
     } else {
@@ -38,8 +37,10 @@ export class HomeComponent implements OnInit {
     this.popup.savingActiveToggle();
   }
 
-  onSpend(): void {
+  onSpend(id: string, value: number): void {
     if (this.popup.popupConfig.saving.active) {
+      this.dataService.spendCardId = id;
+      this.dataService.spendCardValue = value;
       this.openSpendPopup();
     } else {
       this.toastr.error('Please pick the savings category first!');

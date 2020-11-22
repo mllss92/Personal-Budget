@@ -23,7 +23,12 @@ const UserSchema = mongoose.Schema({
   spends: [{
     name: { type: String, required: true },
     image: { type: String, required: true },
-    value: { type: Number, default: 0 }
+    list: [
+      {
+        month: { type: String },
+        value: { type: Number }
+      }
+    ]
   }]
 });
 
@@ -44,7 +49,7 @@ UserSchema.pre("save", function (next) {
 
     next();
   } else {
-    next();
+    next()
   }
 });
 

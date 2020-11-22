@@ -10,4 +10,5 @@ export interface AuthorizedUser {
   savings: Category[];
   spends: Category[];
   login: boolean;
+  expenses: number;
 }

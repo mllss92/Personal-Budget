@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ToasterService } from './../../shared/services/toaster.service';
 import { AuthService } from './../service/auth.service';
 import { ValidatorsService } from './../validators/validators.service';
 

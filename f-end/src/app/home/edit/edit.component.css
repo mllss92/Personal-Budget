@@ -1,0 +1,16 @@
+.edit {
+  padding: 0 1em .5em 1em !important;
+}
+
+.card-title small {
+  font-size: 14px;
+}
+
+span.center-align {
+  display: block;
+}
+
+input.browser-default::-webkit-outer-spin-button,
+input.browser-default::-webkit-inner-spin-button {
+  appearance: none;
+}

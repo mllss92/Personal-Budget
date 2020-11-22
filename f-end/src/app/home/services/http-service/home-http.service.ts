@@ -72,4 +72,35 @@ export class HomeHttpService {
       );
   }
 
+  addSpend(spendValue: number): void {
+    const reqValue = {
+      value: spendValue,
+      savingId: this.data.savingCardId,
+      spendId: this.data.spendCardId,
+      month: this.data.month
+    };
+
+    this.http.post('http://localhost:3000/api/spend/add', reqValue, this.header.makeHeader())
+      .subscribe(
+        res => {
+          this.localStorageService.updateUserInfo(res);
+        },
+        err => {
+          this.errorHandler.error(err);
+        }
+      );
+  }
+
+  editIncome(editedValue: number): void {
+    this.http.post('http://localhost:3000/api/income/edit', { value: editedValue }, this.header.makeHeader())
+      .subscribe(
+        res => {
+          this.localStorageService.updateUserInfo(res);
+        },
+        err => {
+          this.errorHandler.error(err);
+        }
+      );
+  }
+
 }

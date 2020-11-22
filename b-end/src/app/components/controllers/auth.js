@@ -3,6 +3,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const jwtConfig = require('./../../../configs/jwt');
 
+const getMonthIncome = require('./../helpers/month-income.helper');
+const getSpendsValue = require('./../helpers/spends.helper');
+const getExpensesValue = require('./../helpers/expenses.helper');
 
 const login = async (req, res) => {
   try {
@@ -21,6 +24,9 @@ const login = async (req, res) => {
       jwtConfig.config
     );
     const monthIncome = await getMonthIncome(user, data.month);
+    const spends = await getSpendsValue(user, data.month);
+    const expenses = await getExpensesValue(user, data.month);
+
     const result = {
       fullName: `${user.name} ${user.lastName}`,
       _id: user._id,
@@ -29,24 +35,14 @@ const login = async (req, res) => {
       monthIncome: monthIncome,
       avalibleToDistribute: user.income.avalibleToDistribute,
       savings: user.savings,
-      spends: user.spends,
-      login: true
+      spends: spends,
+      login: true,
+      expenses: expenses
     }
     return res.status(200).json(result)
   } catch (error) {
     res.status(500).json({ message: 'Server error. Please try again later.' })
   }
-}
-
-const getMonthIncome = async (user, reqMonth) => {
-  const incomeList = user.income.list;
-  const month = incomeList.find(el => el.month === reqMonth);
-  if (!month) {
-    user.income.list.push({ month: reqMonth, value: [0] });
-    await user.save();
-    return [0]
-  }
-  return month.value;
 }
 
 const register = async (req, res) => {

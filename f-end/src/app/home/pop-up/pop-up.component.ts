@@ -49,4 +49,18 @@ export class PopUpComponent implements OnInit {
     this.http.createNewSaving(value);
     this.popup.savingCreateToogle();
   }
+
+  addSpend(value: number): void {
+    if (value > this.dataService.savingCardValue) {
+      this.calcComponent.spendError();
+    } else {
+      this.http.addSpend(value);
+      this.popup.closeSpendPopup();
+    }
+  }
+
+  incomeEdit(value: number): void {
+    this.http.editIncome(value);
+    this.popup.incomeEditToggle();
+  }
 }

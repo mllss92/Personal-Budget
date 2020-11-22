@@ -68,5 +68,9 @@ export class CalculatorComponent implements OnInit {
     this.calcDisplay.setErrors({ distributeError: true });
   }
 
+  spendError(): void {
+    this.calcDisplay.setErrors({ spendError: true });
+  }
+
 
 }

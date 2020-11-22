@@ -18,7 +18,9 @@
 
       <div class="info-box">
         <span class="material-icons"> payments </span>
-        <span class="data grey-text text-lighten-1">Expenses: $99999</span>
+        <span class="data grey-text text-lighten-1">Expenses:
+          {{ dataService.authorizedUser.expenses | currency:'UAH ':'symbol':'1.1-1' }}
+        </span>
       </div>
 
       <div class="info-box">
@@ -42,35 +44,3 @@
     </div>
   </div>
 </mat-sidenav>
-
-
-
-
-
-<!-- <nav class="info z-depth-5 teal darken-1 col s12 m5 offset-l1">
-  <div class="info-row">
-    <div class="info-box">
-      <span class="material-icons"> account_circle </span>
-      <span>User Name</span>
-    </div>
-
-    <div class="info-box">
-      <span class="material-icons"> account_balance_wallet </span>
-      <span>User Name</span>
-    </div>
-  </div>
-</nav>
-
-<nav class="info z-depth-5 teal darken-1 col s12 m5 ">
-  <div class="info-row">
-    <div class="info-box">
-      <span class="material-icons"> account_balance_wallet </span>
-      <span>User Name</span>
-    </div>
-
-    <div class="info-box">
-      <span class="material-icons"> account_balance_wallet </span>
-      <span>User Name</span>
-    </div>
-  </div>
-</nav> -->
