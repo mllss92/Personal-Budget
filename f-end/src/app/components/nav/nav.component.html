@@ -33,14 +33,20 @@
 
 </div>
 
-
 <mat-sidenav class="sidenav menu-sidenav grey lighten-2" mode="side" #drawer>
   <div class="menu-sidenav-content">
     <div class="menu-sidenav-navbar">
-
+      <ul class="menu-sidenav-navbar-list">
+        <li class="grey-text text-darken-2 li" *ngFor="let elem of sideNavElements" (click)="elem.action()">
+          <span class="material-icons">
+            {{ elem.image }}
+          </span>
+          {{ elem.name }}</li>
+      </ul>
     </div>
     <div class="logout">
       <button class="btn logout-btn orange lighten-3" (click)="logout()">Logout</button>
     </div>
   </div>
 </mat-sidenav>
+<div class="black-screen" *ngIf="drawer.opened"></div>

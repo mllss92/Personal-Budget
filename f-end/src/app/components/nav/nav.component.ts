@@ -14,6 +14,12 @@ export class NavComponent implements OnInit, OnDestroy {
 
   interval: any;
 
+  sideNavElements = [
+    { name: 'settings', image: 'settings', action: this.settings.bind(this) },
+    { name: 'history', image: 'event_note', action: this.history.bind(this) },
+    { name: 'statistics', image: 'timeline', action: this.statistics.bind(this) }
+  ];
+
   constructor(
     private router: Router,
     public dataService: DataService
@@ -62,6 +68,18 @@ export class NavComponent implements OnInit, OnDestroy {
   clock(): void {
     const time = document.getElementById('time');
     time.innerText = moment().format('LTS');
+  }
+
+  settings(): void {
+    this.router.navigate(['settings']);
+  }
+
+  history(): void {
+    this.router.navigate(['history']);
+  }
+
+  statistics(): void {
+    this.router.navigate(['statistics']);
   }
 
 }
