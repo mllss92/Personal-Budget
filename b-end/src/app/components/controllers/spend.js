@@ -1,4 +1,5 @@
 const users = require('./../models/user');
+const history = require('./history');
 
 const getSpendsValue = require('./../helpers/spends.helper');
 const getExpensesValue = require('./../helpers/expenses.helper');
@@ -21,6 +22,13 @@ const spendAdd = async (req, res) => {
     user.balance -= data.value;
 
     await user.save();
+    history.historyAdd({
+      userId: req.user._id,
+      fromSaving: saving.name,
+      toSpend: spend.name,
+      value: data.value
+    })
+
     const spends = await getSpendsValue(user, data.month);
     const expenses = await getExpensesValue(user, data.month);
     const result = {

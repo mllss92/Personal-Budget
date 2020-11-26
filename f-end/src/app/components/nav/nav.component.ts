@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import * as moment from 'moment';
 
 import { DataService } from './../../shared/services/data.service';
+import { TimeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -12,9 +13,10 @@ import { DataService } from './../../shared/services/data.service';
 })
 export class NavComponent implements OnInit, OnDestroy {
 
-  interval: any;
+  interval: NodeJS.Timeout;
 
   sideNavElements = [
+    { name: 'home', image: 'home', action: this.home.bind(this) },
     { name: 'settings', image: 'settings', action: this.settings.bind(this) },
     { name: 'history', image: 'event_note', action: this.history.bind(this) },
     { name: 'statistics', image: 'timeline', action: this.statistics.bind(this) }
@@ -26,14 +28,15 @@ export class NavComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.setMenuEvent();
     moment.locale('uk');
     this.interval = setInterval(this.clock, 1000);
     this.clock();
+    window.addEventListener('click', this.setMenuEvent);
   }
 
   ngOnDestroy(): void {
     clearInterval(this.interval);
+    window.removeEventListener('clicl', this.setMenuEvent);
   }
 
   setMenuEvent(): void {
@@ -51,13 +54,12 @@ export class NavComponent implements OnInit, OnDestroy {
         }
       }
     }
-    window.addEventListener('click', () => {
-      if (matSideNav.opened) {
-        if (event.target !== sideNav && event.target !== menuBtn) {
-          matSideNav.toggle();
-        }
+    if (matSideNav.opened) {
+      if (event.target !== sideNav && event.target !== menuBtn) {
+        matSideNav.toggle();
       }
-    });
+    }
+
   }
 
   logout(): void {
@@ -68,6 +70,10 @@ export class NavComponent implements OnInit, OnDestroy {
   clock(): void {
     const time = document.getElementById('time');
     time.innerText = moment().format('LTS');
+  }
+
+  home(): void {
+    this.router.navigate(['home']);
   }
 
   settings(): void {

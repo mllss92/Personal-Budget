@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HistoryHttpService } from './services/history-http.service';
+
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private httpService: HistoryHttpService
+  ) { }
 
   ngOnInit(): void {
+    this.httpService.getUserHistory();
   }
 
 }

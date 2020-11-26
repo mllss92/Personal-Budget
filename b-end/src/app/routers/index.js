@@ -5,6 +5,7 @@ const auth = require('./auth');
 const income = require('./income');
 const category = require('./category');
 const spend = require('./spend');
+const history = require('./history');
 
 module.exports = () => {
   const routing = Router();
@@ -13,6 +14,7 @@ module.exports = () => {
   routing.use('/income', passport.authenticate('jwt', { session: false }), income());
   routing.use('/category', passport.authenticate('jwt', { session: false }), category());
   routing.use('/spend', passport.authenticate('jwt', { session: false }), spend());
+  routing.use('/history', passport.authenticate('jwt', { session: false }), history());
 
   return routing
 }
