@@ -7,6 +7,7 @@ const category = require('./category');
 const spend = require('./spend');
 const history = require('./history');
 const statistics = require('./statistics');
+const settings = require('./settings');
 
 module.exports = () => {
   const routing = Router();
@@ -17,6 +18,7 @@ module.exports = () => {
   routing.use('/spend', passport.authenticate('jwt', { session: false }), spend());
   routing.use('/history', passport.authenticate('jwt', { session: false }), history());
   routing.use('/statistics', passport.authenticate('jwt', { session: false }), statistics());
+  routing.use('/settings', passport.authenticate('jwt', { session: false }), settings());
 
   return routing
 }
