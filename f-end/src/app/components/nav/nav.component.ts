@@ -4,7 +4,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 import * as moment from 'moment';
 
 import { DataService } from './../../shared/services/data.service';
-import { TimeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -36,7 +35,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     clearInterval(this.interval);
-    window.removeEventListener('clicl', this.setMenuEvent);
+    window.removeEventListener('click', this.setMenuEvent);
   }
 
   setMenuEvent(): void {

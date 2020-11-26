@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StatisticsHttpService } from './services/statistics-http.service';
+
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatisticsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private httpService: StatisticsHttpService
+  ) { }
 
   ngOnInit(): void {
+    this.httpService.getStatistics();
   }
 
 }
