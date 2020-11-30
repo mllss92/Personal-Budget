@@ -16,7 +16,7 @@ export class SettingsHttpService {
   ) { }
 
   getSettings(): Observable<ProfileInfo> {
-    return this.http.get<ProfileInfo>('http://localhost:3000/api/settings/get', this.header.makeHeader());
+    return this.http.get<ProfileInfo>('api/settings/get', this.header.makeHeader());
   }
 
   goBack(): void {

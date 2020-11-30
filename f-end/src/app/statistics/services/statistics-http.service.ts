@@ -21,7 +21,7 @@ export class StatisticsHttpService {
     const reqValue = {
       month: reqMonth ? reqMonth : this.data.month
     };
-    this.http.post('http://localhost:3000/api/statistics/get', reqValue, this.headers.makeHeader())
+    this.http.post('api/statistics/get', reqValue, this.headers.makeHeader())
       .pipe(
         map((res: StatisticsData) => {
           res.spends.forEach(el => {

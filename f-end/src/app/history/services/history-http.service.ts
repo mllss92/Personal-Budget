@@ -14,7 +14,7 @@ export class HistoryHttpService {
   ) { }
 
   getUserHistory(): void {
-    this.http.get('http://localhost:3000/api/history/get', this.header.makeHeader())
+    this.http.get('api/history/get', this.header.makeHeader())
       .subscribe(
         res => {
           console.log(res);

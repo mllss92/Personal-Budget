@@ -20,7 +20,7 @@ export class HomeHttpService {
   ) { }
 
   addIncome(income: number): void {
-    this.http.post('http://localhost:3000/api/income/add', { value: income }, this.header.makeHeader())
+    this.http.post('api/income/add', { value: income }, this.header.makeHeader())
       .subscribe(
         res => {
           this.localStorageService.updateUserInfo(res);
@@ -37,7 +37,7 @@ export class HomeHttpService {
       savingId: this.data.savingCardId,
       month: this.data.month
     };
-    this.http.post('http://localhost:3000/api/income/distribute', reqValue, this.header.makeHeader())
+    this.http.post('api/income/distribute', reqValue, this.header.makeHeader())
       .subscribe(
         (res) => {
           this.localStorageService.updateUserInfo(res);
@@ -49,7 +49,7 @@ export class HomeHttpService {
   }
 
   createNewSpend(value: Category): void {
-    this.http.post('http://localhost:3000/api/category/create-spend', value, this.header.makeHeader())
+    this.http.post('api/category/create-spend', value, this.header.makeHeader())
       .subscribe(
         res => {
           this.localStorageService.updateUserInfo(res);
@@ -61,7 +61,7 @@ export class HomeHttpService {
   }
 
   createNewSaving(value: Category): void {
-    this.http.post('http://localhost:3000/api/category/create-saving', value, this.header.makeHeader())
+    this.http.post('api/category/create-saving', value, this.header.makeHeader())
       .subscribe(
         res => {
           this.localStorageService.updateUserInfo(res);
@@ -80,7 +80,7 @@ export class HomeHttpService {
       month: this.data.month
     };
 
-    this.http.post('http://localhost:3000/api/spend/add', reqValue, this.header.makeHeader())
+    this.http.post('api/spend/add', reqValue, this.header.makeHeader())
       .subscribe(
         res => {
           this.localStorageService.updateUserInfo(res);
@@ -92,7 +92,7 @@ export class HomeHttpService {
   }
 
   editIncome(editedValue: number): void {
-    this.http.post('http://localhost:3000/api/income/edit', { value: editedValue }, this.header.makeHeader())
+    this.http.post('api/income/edit', { value: editedValue }, this.header.makeHeader())
       .subscribe(
         res => {
           this.localStorageService.updateUserInfo(res);

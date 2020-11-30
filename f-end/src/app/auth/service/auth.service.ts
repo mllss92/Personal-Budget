@@ -28,7 +28,7 @@ export class AuthService {
       password: data.password,
       month: this.dataService.month
     };
-    this.http.post('http://localhost:3000/api/auth/login', reqValue).subscribe(
+    this.http.post('api/auth/login', reqValue).subscribe(
       (res: AuthorizedUser) => {
         this.localStorageService.updateUserInfo(res);
 
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   register(data: RegistrationData): void {
-    this.http.post('http://localhost:3000/api/auth/register', data).subscribe(
+    this.http.post('api/auth/register', data).subscribe(
       res => {
         if (res) {
           this.toaster.success('User has been registered successfully! You can try to login now!');
