@@ -14,7 +14,7 @@ export class DataService {
     _id: JSON.parse(localStorage.getItem('_id')) || '',
     token: JSON.parse(localStorage.getItem('token')) || '',
     balance: JSON.parse(localStorage.getItem('balance')) || 0,
-    lastLogin: JSON.parse(localStorage.getItem('lastLogin')) || '',
+    lastLogin: JSON.parse(localStorage.getItem('lastLogin')) || new Date(),
     monthIncome: JSON.parse(localStorage.getItem('monthIncome')) || [],
     avalibleToDistribute: JSON.parse(localStorage.getItem('avalibleToDistribute')) || 0,
     savings: JSON.parse(localStorage.getItem('savings')) || [],

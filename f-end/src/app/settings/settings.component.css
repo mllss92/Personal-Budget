@@ -1,0 +1,22 @@
+.profile {
+  padding: 1em;
+}
+
+.profile div.divider {
+  margin-bottom: 1em;
+}
+
+.no-bottom {
+  margin-bottom: 0;
+}
+
+ul.info-list li {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 40%;
+  margin-bottom: 1em;
+}
+
+.actions-buttons button {
+  margin-bottom: 1em;
+}

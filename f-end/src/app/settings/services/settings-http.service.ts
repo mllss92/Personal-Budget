@@ -1,25 +1,25 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 
+import { ProfileInfo } from './../../shared/interfaces/profile-info';
 import { MakeHeadersService } from './../../shared/helpers/make-headers.service';
-import { ErrorHandlerService } from './../../shared/helpers/error-handler.service';
 
 @Injectable()
 export class SettingsHttpService {
 
   constructor(
     private http: HttpClient,
-    private errorHandler: ErrorHandlerService,
-    private header: MakeHeadersService
+    private header: MakeHeadersService,
+    private location: Location
   ) { }
 
-  getSettings(): void {
-    this.http.get('http://localhost:3000/api/settings/get', this.header.makeHeader())
-      .subscribe(
-        res => console.log(res),
-        err => {
-          this.errorHandler.error(err);
-        }
-      );
+  getSettings(): Observable<ProfileInfo> {
+    return this.http.get<ProfileInfo>('http://localhost:3000/api/settings/get', this.header.makeHeader());
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
