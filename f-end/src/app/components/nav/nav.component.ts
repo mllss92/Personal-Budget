@@ -15,10 +15,10 @@ export class NavComponent implements OnInit, OnDestroy {
   interval: NodeJS.Timeout;
 
   sideNavElements = [
-    { name: 'home', image: 'home', action: this.home.bind(this) },
-    { name: 'settings', image: 'settings', action: this.settings.bind(this) },
-    { name: 'history', image: 'event_note', action: this.history.bind(this) },
-    { name: 'statistics', image: 'timeline', action: this.statistics.bind(this) }
+    { name: 'home', image: 'home' },
+    { name: 'profile', image: 'settings' },
+    { name: 'history', image: 'event_note' },
+    { name: 'statistics', image: 'timeline' }
   ];
 
   constructor(
@@ -69,22 +69,6 @@ export class NavComponent implements OnInit, OnDestroy {
   clock(): void {
     const time = document.getElementById('time');
     time.innerText = moment().format('LTS');
-  }
-
-  home(): void {
-    this.router.navigate(['home']);
-  }
-
-  settings(): void {
-    this.router.navigate(['settings']);
-  }
-
-  history(): void {
-    this.router.navigate(['history']);
-  }
-
-  statistics(): void {
-    this.router.navigate(['statistics']);
   }
 
 }

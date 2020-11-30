@@ -32,7 +32,7 @@ export class AuthService {
       (res: AuthorizedUser) => {
         this.localStorageService.updateUserInfo(res);
 
-        this.toaster.success(`Welcome ${res.fullName}!`);
+        this.toaster.success(`Welcome ${res.name} ${res.lastName}!`);
         this.router.navigate(['home']);
       },
       err => {

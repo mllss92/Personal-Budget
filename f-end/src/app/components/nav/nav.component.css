@@ -96,6 +96,10 @@
   z-index: 5;
 }
 
+.active {
+  background: #ffcc80 !important;
+}
+
 
 @media (max-width: 850px) {
   .menu-icon {

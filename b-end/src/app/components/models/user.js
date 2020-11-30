@@ -6,6 +6,7 @@ const UserSchema = mongoose.Schema({
   name: { type: String, required: true },
   lastName: { type: String, required: true },
   balance: { type: Number, default: 0 },
+  lastLogin: { type: Date },
   income: {
     avalibleToDistribute: { type: Number, default: 0 },
     list: [

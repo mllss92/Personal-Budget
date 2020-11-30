@@ -9,10 +9,12 @@ import { AuthorizedUser } from 'src/app/shared/interfaces/authorized-user';
 export class DataService {
 
   authorizedUser: AuthorizedUser = {
-    fullName: JSON.parse(localStorage.getItem('fullName')) || '',
+    name: JSON.parse(localStorage.getItem('name')) || '',
+    lastName: JSON.parse(localStorage.getItem('lastName')) || '',
     _id: JSON.parse(localStorage.getItem('_id')) || '',
     token: JSON.parse(localStorage.getItem('token')) || '',
     balance: JSON.parse(localStorage.getItem('balance')) || 0,
+    lastLogin: JSON.parse(localStorage.getItem('lastLogin')) || '',
     monthIncome: JSON.parse(localStorage.getItem('monthIncome')) || [],
     avalibleToDistribute: JSON.parse(localStorage.getItem('avalibleToDistribute')) || 0,
     savings: JSON.parse(localStorage.getItem('savings')) || [],

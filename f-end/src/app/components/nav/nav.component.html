@@ -7,7 +7,8 @@
     <div class="info-row">
       <div class="info-box">
         <span class="material-icons"> account_circle </span>
-        <span class="data grey-text text-lighten-1">User: {{ dataService.authorizedUser.fullName }}</span>
+        <span class="data grey-text text-lighten-1">User: {{ dataService.authorizedUser.name }}
+          {{ dataService.authorizedUser.lastName }}</span>
       </div>
 
       <div class="info-box">
@@ -37,7 +38,8 @@
   <div class="menu-sidenav-content">
     <div class="menu-sidenav-navbar">
       <ul class="menu-sidenav-navbar-list">
-        <li class="grey-text text-darken-2 li" *ngFor="let elem of sideNavElements" (click)="elem.action()">
+        <li class="grey-text text-darken-2 li" *ngFor="let elem of sideNavElements" [routerLink]="['/' + elem.name]"
+          routerLinkActive="active">
           <span class="material-icons">
             {{ elem.image }}
           </span>

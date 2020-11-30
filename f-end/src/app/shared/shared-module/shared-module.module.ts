@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +14,8 @@ import { ArrToNumberPipe } from './pipes/arr-to-number.pipe';
   ],
   imports: [
     CommonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    RouterModule
   ],
   exports: [
     NavComponent,
