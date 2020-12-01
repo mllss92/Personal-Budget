@@ -7,6 +7,7 @@ const UserSchema = mongoose.Schema({
   lastName: { type: String, required: true },
   balance: { type: Number, default: 0 },
   lastLogin: { type: Date },
+  photoSrc: { type: String, default: "uploads/init.jpg" },
   income: {
     avalibleToDistribute: { type: Number, default: 0 },
     list: [

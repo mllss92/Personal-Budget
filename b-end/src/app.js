@@ -11,6 +11,7 @@ const app = express();
 app.use(passport.initialize());
 passportUse(passport);
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 app.use('/api', routing());
 

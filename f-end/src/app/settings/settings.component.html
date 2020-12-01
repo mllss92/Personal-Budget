@@ -6,9 +6,9 @@
       <h5>Photo</h5>
       <div class="divider"></div>
       <mat-card>
-        <img class="no-bottom" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+        <img class="no-bottom" mat-card-image [src]="profileInfo.photoSrc">
         <mat-card-actions class="row">
-          <input type="file" id="file" hidden>
+          <input type="file" id="file" hidden (change)="uploadPhoto(upload)" #upload>
           <label class="btn-small col s10 offset-s1" for="file">
             Upload new Photo
           </label>

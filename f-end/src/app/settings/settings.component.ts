@@ -16,7 +16,8 @@ export class SettingsComponent implements OnInit {
   profileInfo: ProfileInfo = {
     name: '',
     lastName: '',
-    email: ''
+    email: '',
+    photoSrc: ''
   };
   lastLogin: string;
 
@@ -35,14 +36,23 @@ export class SettingsComponent implements OnInit {
     this.httpService.getSettings()
       .subscribe(
         res => this.profileInfo = res,
-        err => {
-          this.errorHandler.error(err);
-        }
+        err => this.errorHandler.error(err)
       );
   }
 
   goBack(): void {
     this.httpService.goBack();
+  }
+
+  uploadPhoto(ref: any): void {
+    const file = ref.files[0];
+    const formData = new FormData();
+    formData.append('image', file, file.name);
+
+    this.httpService.uploadPhoto(formData).subscribe(
+      res => this.profileInfo.photoSrc = res.path,
+      err => this.errorHandler.error(err)
+    );
   }
 
 }
