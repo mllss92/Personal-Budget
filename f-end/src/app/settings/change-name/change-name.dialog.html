@@ -1,0 +1,19 @@
+<mat-card-title class="center">Enter a new name!</mat-card-title>
+<div class="divider" style="margin-bottom: 1em;"></div>
+
+<mat-card-content class="row">
+  <mat-form-field class="col s12">
+    <mat-label>New name</mat-label>
+    <input class="browser-default" matInput type="text" [formControl]="name">
+    <mat-error *ngIf="name.hasError('required')">This field is required!</mat-error>
+    <mat-error *ngIf="name.hasError('name')">Please use only Latin letters. Min length is 2 characters. Numbers and
+      symbols can not be used!</mat-error>
+  </mat-form-field>
+</mat-card-content>
+
+<mat-card-footer class="row">
+  <button class="btn col s3 offset-s1" style="margin-top: 1em;" type="button" [disabled]="name.invalid"
+    [mat-dialog-close]="name.value">change</button>
+  <button class="btn col s3 offset-s4 orange lighten-3" style="margin-top: 1em;" type="button"
+    mat-dialog-close>cancel</button>
+</mat-card-footer>

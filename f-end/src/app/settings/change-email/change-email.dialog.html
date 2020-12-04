@@ -1,0 +1,18 @@
+<mat-card-title class="center">Enter a new E-mail address!</mat-card-title>
+<div class="divider" style="margin-bottom: 1em;"></div>
+
+<mat-card-content class="row">
+  <mat-form-field class="col s12">
+    <mat-label>New e-mail address</mat-label>
+    <input class="browser-default" matInput type="text" [formControl]="email">
+    <mat-error *ngIf="email.hasError('required')">This field is required!</mat-error>
+    <mat-error *ngIf="email.hasError('email')">Please enter a valid e-mail address!</mat-error>
+  </mat-form-field>
+</mat-card-content>
+
+<mat-card-footer class="row">
+  <button class="btn col s3 offset-s1" style="margin-top: 1em;" type="button" [disabled]="email.invalid"
+    [mat-dialog-close]="email.value">change</button>
+  <button class="btn col s3 offset-s4 orange lighten-3" style="margin-top: 1em;" type="button"
+    mat-dialog-close>cancel</button>
+</mat-card-footer>

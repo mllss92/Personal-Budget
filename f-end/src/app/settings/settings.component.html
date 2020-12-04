@@ -20,10 +20,30 @@
       <h5>Info</h5>
       <div class="divider"></div>
       <ul class="info-list">
-        <li><strong>First Name:</strong> {{ profileInfo.name }}</li>
-        <li><strong>Last Name:</strong> {{ profileInfo.lastName }}</li>
-        <li><strong>E-mail address:</strong> {{ profileInfo.email }}</li>
-        <li><strong>Last login:</strong> {{ lastLogin }}</li>
+        <li>
+          <strong>First Name:</strong> {{ profileInfo.name }}
+          <button class="btn-small hidden" type="button" #firstName data-target="name"
+            (click)="openConfirmPasswordDialog(firstName)">
+            <i class="material-icons">create</i></button>
+        </li>
+        <li>
+          <strong>Last Name:</strong> {{ profileInfo.lastName }}
+          <button class="btn-small hidden" type="button" #lastName data-target="lastName"
+            (click)="openConfirmPasswordDialog(lastName)">
+            <i class="material-icons">create</i></button>
+        </li>
+        <li>
+          <strong>E-mail address:</strong> {{ profileInfo.email }}
+          <button class="btn-small hidden" type="button" #email data-target="email"
+            (click)="openConfirmPasswordDialog(email)">
+            <i class="material-icons">create</i></button>
+        </li>
+      </ul>
+      <div class="divider"></div>
+      <ul class="readonly">
+        <li>
+          <strong>Last login:</strong> {{ lastLogin }}
+        </li>
       </ul>
     </div>
 
@@ -31,8 +51,24 @@
       <h5>Actions</h5>
       <div class="divider"></div>
       <div class="actions-buttons row">
-        <button class="btn col s10 offset-s1" type="button">edit profile</button>
-        <button class="btn col s10 offset-s1 orange lighten-3" type="button" (click)="goBack()">Back</button>
+        <button class="btn col s10 offset-s1 grey lighten-1" type="button" data-target="password" #password
+          (click)="openConfirmPasswordDialog(password)">
+          change password</button>
+        <button class="btn col s10 offset-s1" type="button" (click)="saveChanges()">Save</button>
+        <button class="btn col s10 offset-s1 orange lighten-3" type="button" (click)="cancelChanges()">Cancel</button>
+        <button class="btn col s10 offset-s1 grey lighten-1" type="button" (click)="goBack()">Back</button>
+      </div>
+
+      <div class="change-list" *ngIf="dialog.isChanged">
+        <h6>List of changes</h6>
+        <div class="divider"></div>
+        <small>You must click "Save" button to apply changes!</small>
+        <ul>
+          <li *ngIf="dialog.changesList.name">First name: {{ dialog.changesList.name }}</li>
+          <li *ngIf="dialog.changesList.lastName">Last name: {{ dialog.changesList.lastName }}</li>
+          <li *ngIf="dialog.changesList.email">E-mail address: {{ dialog.changesList.email }}</li>
+          <li *ngIf="dialog.changesList.password">Password: {{ '*'.repeat(dialog.changesList.password.length) }}</li>
+        </ul>
       </div>
     </div>
   </div>

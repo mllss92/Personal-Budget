@@ -13,10 +13,27 @@
 ul.info-list li {
   display: flex;
   justify-content: space-between;
-  padding-right: 40%;
-  margin-bottom: 1em;
+  align-items: center;
+  width: 80%;
+}
+ul.readonly li {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+}
+
+ul.info-list li button {
+  transform: scale(0.95);
 }
 
 .actions-buttons button {
   margin-bottom: 1em;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.active {
+  background: rgba(0, 0, 0, 0.1);
 }

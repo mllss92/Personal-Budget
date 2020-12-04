@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
 import { AuthService } from './service/auth.service';
-import { ValidatorsService } from './validators/validators.service';
+import { ValidatorsService } from './../shared/validators/validators.service';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
