@@ -1,11 +1,7 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
-import { ToasterService } from './../../shared/services/toaster.service';
-import { ErrorHandlerService } from './../../shared/helpers/error-handler.service';
-import { SettingsHttpService } from './../services/settings-http.service';
 import { ValidatorsService } from './../../shared/validators/validators.service';
 import { CheckPasswordService } from './check-password.service';
 
@@ -17,12 +13,8 @@ import { CheckPasswordService } from './check-password.service';
 export class ChangePasswordComponent implements OnInit, OnDestroy {
 
   constructor(
-    private dialog: MatDialog,
     private passwordService: CheckPasswordService,
     private validators: ValidatorsService,
-    private httpService: SettingsHttpService,
-    private errorHandler: ErrorHandlerService,
-    private toaster: ToasterService
   ) { }
 
   form: FormGroup;

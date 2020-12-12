@@ -14,7 +14,7 @@ import { PopupService } from './pop-up-service/popup.service';
 export class PopUpComponent implements OnInit {
 
   @ViewChild(CalculatorComponent)
-  private calcComponent: CalculatorComponent;
+  calcComponent: CalculatorComponent;
 
   constructor(
     public popup: PopupService,

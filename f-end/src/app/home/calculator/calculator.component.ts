@@ -26,10 +26,6 @@ export class CalculatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.calcDisplay = new FormControl('', [Validators.required]);
-    setTimeout(() => {
-      const input = document.querySelector('.mat-form-field-underline') as HTMLDivElement;
-      input.style.display = 'none';
-    }, 10);
     document.querySelector('.calculator').addEventListener('keydown', () => {
       const eventCode = (event as KeyboardEvent).code;
       if (eventCode === 'NumpadEnter') {

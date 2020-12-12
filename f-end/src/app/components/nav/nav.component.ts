@@ -1,7 +1,10 @@
+import { fromEvent, Subscription, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
 import * as moment from 'moment';
+import { filter, tap, map } from 'rxjs/operators';
+
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { DataService } from './../../shared/services/data.service';
 
@@ -12,7 +15,9 @@ import { DataService } from './../../shared/services/data.service';
 })
 export class NavComponent implements OnInit, OnDestroy {
 
-  interval: NodeJS.Timeout;
+  interval: any;
+  isSideNavOpened = false;
+  menuEvent$: Subscription;
 
   sideNavElements = [
     { name: 'home', image: 'home' },
@@ -30,35 +35,23 @@ export class NavComponent implements OnInit, OnDestroy {
     moment.locale('uk');
     this.interval = setInterval(this.clock, 1000);
     this.clock();
-    window.addEventListener('click', this.setMenuEvent);
+    this.menuEvent$ = this.setMenuEvent().subscribe(res => { if (res) { this.closeSidenav(); } });
   }
 
   ngOnDestroy(): void {
     clearInterval(this.interval);
-    window.removeEventListener('click', this.setMenuEvent);
+    this.menuEvent$.unsubscribe();
   }
 
-  setMenuEvent(): void {
-    const sideNav = document.querySelector('.menu-sidenav-content');
-    const menuBtn = document.querySelector('.menu-btn span');
-    let propertys: any = document.querySelector('mat-sidenav');
-    propertys = propertys.__ngContext__;
-    let matSideNav: MatSidenav;
-
-    for (const key in propertys) {
-      if (Object.prototype.hasOwnProperty.call(propertys, key)) {
-        const element = propertys[key];
-        if (element instanceof MatSidenav) {
-          matSideNav = element;
-        }
-      }
-    }
-    if (matSideNav.opened) {
-      if (event.target !== sideNav && event.target !== menuBtn) {
-        matSideNav.toggle();
-      }
-    }
-
+  setMenuEvent(): Observable<boolean> {
+    return fromEvent(window, 'click').pipe(
+      filter(e => {
+        const sidenav = document.querySelector('.menu-sidenav-content');
+        const menuBtn = document.querySelector('.menu-btn span');
+        return e.target !== sidenav && e.target !== menuBtn;
+      }),
+      map(e => { if (this.isSideNavOpened === true) { return true; } }),
+    );
   }
 
   logout(): void {
@@ -69,6 +62,13 @@ export class NavComponent implements OnInit, OnDestroy {
   clock(): void {
     const time = document.getElementById('time');
     time.innerText = moment().format('LTS');
+  }
+
+  openSidenav(): void {
+    this.isSideNavOpened = true;
+  }
+  closeSidenav(): void {
+    this.isSideNavOpened = false;
   }
 
 }

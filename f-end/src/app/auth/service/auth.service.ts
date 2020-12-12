@@ -1,3 +1,4 @@
+import { Observable, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -44,10 +45,8 @@ export class AuthService {
   register(data: RegistrationData): void {
     this.http.post('api/auth/register', data).subscribe(
       res => {
-        if (res) {
-          this.toaster.success('User has been registered successfully! You can try to login now!');
-          this.router.navigate(['auth/login']);
-        }
+        this.toaster.success('User has been registered successfully! You can try to login now!');
+        this.router.navigate(['auth/login']);
       },
       err => {
         this.errorHandler.error(err);

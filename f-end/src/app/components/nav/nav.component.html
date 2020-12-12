@@ -1,6 +1,6 @@
 <div class="nav-wrapper row">
-  <nav class="z-depth-5 teal darken-1 col m1 center btn menu-btn">
-    <span class="material-icons menu-icon" (click)="drawer.open()"> menu </span>
+  <nav class="z-depth-5 teal darken-1 col m1 center btn menu-btn" (click)="openSidenav()">
+    <span class="material-icons menu-icon"> menu </span>
   </nav>
 
   <nav class="info z-depth-5 teal darken-1 col s12 m10 offset-m1">
@@ -34,7 +34,7 @@
 
 </div>
 
-<mat-sidenav class="sidenav menu-sidenav grey lighten-2" mode="side" #drawer>
+<mat-sidenav class="sidenav menu-sidenav grey lighten-2" mode="side" #drawer [opened]="isSideNavOpened">
   <div class="menu-sidenav-content">
     <div class="menu-sidenav-navbar">
       <ul class="menu-sidenav-navbar-list">

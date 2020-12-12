@@ -9,7 +9,7 @@ export class ToasterService {
   private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   private verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  private config: MatSnackBarConfig = {
+  config: MatSnackBarConfig = {
     duration: 5000,
     horizontalPosition: this.horizontalPosition,
     verticalPosition: this.verticalPosition,
