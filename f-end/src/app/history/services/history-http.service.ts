@@ -1,27 +1,19 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { HistoryData } from './../../shared/interfaces/history';
 import { MakeHeadersService } from './../../shared/helpers/make-headers.service';
-import { ErrorHandlerService } from './../../shared/helpers/error-handler.service';
 
 @Injectable()
 export class HistoryHttpService {
 
   constructor(
     private http: HttpClient,
-    private errorHandler: ErrorHandlerService,
     private header: MakeHeadersService
   ) { }
 
-  getUserHistory(): void {
-    this.http.get('api/history/get', this.header.makeHeader())
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          this.errorHandler.error(err);
-        }
-      );
+  getUserHistory(month: string): Observable<HistoryData[]> {
+    return this.http.post<HistoryData[]>(`api/history/get`, { month }, this.header.makeHeader());
   }
 }

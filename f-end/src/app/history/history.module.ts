@@ -1,5 +1,9 @@
+import { DateService } from './services/date.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HistoryHttpService } from './services/history-http.service';
 import { SharedModuleModule } from './../shared/shared-module/shared-module.module';
@@ -12,10 +16,13 @@ import { HistoryComponent } from './history.component';
   imports: [
     CommonModule,
     HistoryRoutingModule,
-    SharedModuleModule
+    SharedModuleModule,
+    MatTabsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
-    HistoryHttpService
+    HistoryHttpService,
+    DateService
   ]
 })
 export class HistoryModule { }

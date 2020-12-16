@@ -1,0 +1,49 @@
+.history {
+  padding: 1em;
+}
+
+button.btn-floating {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.btn-floating:active {
+  background: #26a69a !important;
+}
+
+h4.year {
+  display: inline-block;
+  margin: 0 2em;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+  min-width: 8.33% !important;
+  max-width: 8.33% !important;
+ }
+
+ .expenses {
+   background: rgba(185, 42, 42, 0.1);
+ }
+
+ .income {
+   background: rgba(0, 128, 0, 0.1);
+ }
+
+ tr, th {
+    width: 20%;
+ }
+
+ .loading {
+   display: flex;
+   margin: 2em;
+   align-items: center;
+   justify-content: center;
+ }

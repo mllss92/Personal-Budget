@@ -69,7 +69,6 @@ describe('SettingsHttpService', () => {
 
   describe('метод confirmPassword()', () => {
     it('должен сделать запрос типа "POST" и вернуть "Observable<boolean>', () => {
-      const mockData = true;
       service.confirmPassword('').subscribe(
         res => {
           expect(res).toBe('test' as unknown as boolean);

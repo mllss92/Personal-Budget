@@ -4,7 +4,7 @@ const controller = require('./../components/controllers/history');
 
 module.exports = () => {
 
-  route.get('/get', controller.getHistory);
+  route.post('/get', controller.getHistory);
 
   return route
 }
