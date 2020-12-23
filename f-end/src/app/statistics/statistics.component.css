@@ -1,0 +1,41 @@
+.statistics {
+  padding: 1em;
+  padding-bottom: 2em;
+}
+
+.datePicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+button.btn-floating {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.btn-floating:active {
+  background: #26a69a !important;
+}
+
+h4.date {
+  display: inline-block;
+  min-width: 190px;
+  text-align: center;
+}
+
+table {
+  border: 2px solid #666;
+  margin-top: 5em;
+}
+
+th, td {
+  width: 33.33%;
+  padding: 1em 2em;
+}
+
+.loading {
+  margin: 12em 0;
+}

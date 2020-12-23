@@ -6,6 +6,7 @@ const jwtConfig = require('./../../../configs/jwt');
 const getMonthIncome = require('./../helpers/month-income.helper');
 const getSpendsValue = require('./../helpers/spends.helper');
 const getExpensesValue = require('./../helpers/expenses.helper');
+const getSavingsWithoutList = require('./../helpers/savings.helper');
 
 const login = async (req, res) => {
   try {
@@ -37,7 +38,7 @@ const login = async (req, res) => {
       lastLogin: user.lastLogin,
       monthIncome: monthIncome,
       avalibleToDistribute: user.income.avalibleToDistribute,
-      savings: user.savings,
+      savings: await getSavingsWithoutList(user, data.month),
       spends: spends,
       login: true,
       expenses: expenses

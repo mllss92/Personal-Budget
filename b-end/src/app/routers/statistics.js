@@ -4,7 +4,9 @@ const controller = require('./../components/controllers/statistics');
 
 module.exports = () => {
 
-  route.post('/get', controller.getStatistics);
+  route.post('/spend', controller.getSpendStatistics);
+  route.post('/savings', controller.getSavingStatistics);
+  route.post('/amount', controller.getAmountStatistics);
 
   return route
 }

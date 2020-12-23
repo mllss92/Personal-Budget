@@ -1,5 +1,144 @@
 <app-nav></app-nav>
 
 <div class="container">
-  <h5 class="center">Statistics coming soon...</h5>
+  <div class="statistics z-depth-5">
+
+    <header>
+      <div class="datePicker">
+        <button class="btn-floating grey lighten-1" type="button" (click)="editMonth(-1)">
+          <span class="material-icons"> arrow_back </span>
+        </button>
+        <h4 class="date">
+          <span>
+            {{ dateService.date$ | async | date:'MMM yyyy' }}
+          </span>
+        </h4>
+        <button class="btn-floating grey lighten-1" type="button" (click)="editMonth(1)">
+          <span class="material-icons"> arrow_forward </span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <mat-tab-group mat-align-tabs="center" *ngIf="!loading">
+        <mat-tab label="Spends">
+          <ng-template matTabContent>
+            <h5>
+              Total expenses amount in this month:
+              <span class="orange-text text-darken-3">{{
+                spendsStatistics.expenses | currency:'UAH ':'symbol':'1.1-1' }}
+              </span>
+            </h5>
+            <app-chart-bar [chartData]="spendsStatistics.spends"></app-chart-bar>
+            <table class="striped">
+              <thead>
+                <th>Category</th>
+                <th>Amount's percetn</th>
+                <th>Amount</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let elem of spendsStatistics.spends">
+                  <td>{{ elem.name }}</td>
+                  <td>{{ elem.value ? ((elem.value / spendsStatistics.expenses) * 100).toFixed(1) : 0}} %</td>
+                  <td>{{ elem.value | currency:'UAH '}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Savings">
+          <ng-template matTabContent>
+            <h5>
+              Total income amount in this month:
+              <span class="teal-text text-lighten-1">{{
+                savingsStatistics.income | currency:'UAH ':'symbol':'1.1-1' }}
+              </span>
+            </h5>
+            <app-chart-bar [chartData]="savingsStatistics.savings"></app-chart-bar>
+            <table class="striped" *ngIf="savingsStatistics">
+              <thead>
+                <th>Category</th>
+                <th>Amount's percetn</th>
+                <th>Amount</th>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let elem of savingsStatistics.savings">
+                  <td>{{ elem.name }}</td>
+                  <td>{{ elem.value ? ((elem.value / savingsStatistics.income) * 100).toFixed(1) : 0}} %</td>
+                  <td>{{ elem.value | currency:'UAH '}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Amount">
+          <ng-template matTabContent>
+            <h5>
+              Total income amount in previous month:
+              <span class="teal-text text-lighten-1">{{
+                amountStatistics[0].series[0].value | currency:'UAH ':'symbol':'1.1-1' }}
+              </span>
+            </h5>
+
+            <h5>
+              Total income amount in this month:
+              <span class="teal-text text-lighten-1">{{
+                amountStatistics[0].series[1].value | currency:'UAH ':'symbol':'1.1-1' }}
+              </span>
+            </h5>
+            <h5>
+              Total expenses amount in previous month:
+              <span class="orange-text text-darken-3">{{
+                amountStatistics[1].series[0].value | currency:'UAH ':'symbol':'1.1-1' }}
+              </span>
+            </h5>
+            <h5>
+              Total expenses amount in this month:
+              <span class="orange-text text-darken-3">{{
+                amountStatistics[1].series[1].value | currency:'UAH ':'symbol':'1.1-1' }}
+              </span>
+            </h5>
+            <div class="chart">
+              <ngx-charts-bar-vertical-2d [results]="amountStatistics" [animations]="true" [gradient]="false"
+                [xAxis]="true" [yAxis]="true" [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="true"
+                [maxXAxisTickLength]="10" [showDataLabel]="true" [noBarWhenZero]="false" [barPadding]="12"
+                [roundEdges]="false" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
+
+            <table class="striped">
+              <thead>
+                <th>Category</th>
+                <th>Amount's percetn</th>
+                <th>Amount</th>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let elem of amountStatistics">
+                  <td>{{ elem.name }}</td>
+                  <td *ngIf="elem.series[1].value && elem.series[0].value; else alter">{{ ((elem.series[1].value /
+                    elem.series[0].value) * 100).toFixed(1)}} %</td>
+                  <td>{{ elem.series[1].value | currency:'UAH '}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+
+      <div class="loading" *ngIf="loading">
+        <mat-spinner diameter="180"></mat-spinner>
+      </div>
+    </main>
+
+  </div>
+
+
 </div>
+<ng-template #alter>
+  <td>0 %</td>
+</ng-template>

@@ -8,10 +8,11 @@ module.exports = async (user, reqMonth) => {
       await user.save();
     }
     return user.spends.map(spend => {
+      const month = spend.list.find(el => el.month === reqMonth);
       return {
         name: spend.name,
         image: spend.image,
-        value: spend.list.find(el => el.month === reqMonth).value,
+        value: month ? month.value : 0,
         _id: spend._id
       }
     });

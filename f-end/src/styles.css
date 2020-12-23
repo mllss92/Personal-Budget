@@ -36,6 +36,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
 }
 
+.loading {
+    display: flex;
+    margin: 2em;
+    align-items: center;
+    justify-content: center;
+  }
+
+.chart {
+    height: 600px;
+  }
+
 .slideDown{
   animation-name: slideDown;
   -webkit-animation-name: slideDown;  

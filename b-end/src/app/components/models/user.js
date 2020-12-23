@@ -20,7 +20,13 @@ const UserSchema = mongoose.Schema({
   savings: [{
     name: { type: String, required: true },
     image: { type: String, required: true },
-    value: { type: Number, default: 0 }
+    value: { type: Number, default: 0 },
+    list: [
+      {
+        month: { type: String },
+        value: { type: Number }
+      }
+    ]
   }],
   spends: [{
     name: { type: String, required: true },

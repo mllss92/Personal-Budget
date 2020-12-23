@@ -41,9 +41,3 @@ header {
     width: 20%;
  }
 
- .loading {
-   display: flex;
-   margin: 2em;
-   align-items: center;
-   justify-content: center;
- }

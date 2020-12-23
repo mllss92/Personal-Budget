@@ -1,6 +1,7 @@
 const users = require('./../models/user');
 const moment = require('moment');
 
+const getSavingsWithoutList = require('./../helpers/savings.helper');
 const getSpendsValue = require('./../helpers/spends.helper');
 const defaultDate = moment().format('MM.YYYY');
 
@@ -26,9 +27,17 @@ const createSpend = async (req, res) => {
 
 const createSaving = async (req, res) => {
   try {
-    const user = await users.findOneAndUpdate({ _id: req.user._id }, { $push: { savings: req.body } }, { new: true });
+    const data = {
+      name: req.body.name,
+      image: req.body.image,
+      list: [{
+        month: defaultDate,
+        value: 0
+      }]
+    }
+    const user = await users.findOneAndUpdate({ _id: req.user._id }, { $push: { savings: data } }, { new: true });
     const result = {
-      savings: user.savings
+      savings: await getSavingsWithoutList(user)
     };
     res.status(201).json(result);
   } catch (error) {

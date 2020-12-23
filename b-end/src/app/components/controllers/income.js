@@ -20,6 +20,7 @@ const distributeIncome = async (req, res) => {
     user.balance += req.body.value;
     const saving = user.savings.find(el => el._id.toString() === req.body.savingId);
     saving.value += req.body.value;
+    saving.list.find(el => el.month === req.body.month).value += req.body.value;
     const month = user.income.list.find(el => el.month === req.body.month);
     month.value.push(req.body.value);
     await user.save();
